@@ -7,6 +7,8 @@ function AuthWrapper(props) {
   // nuestros estados de auth
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedUser, setLoggedUser] = useState(null);
+  const [isCompany, setIsCompany] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
   const [isFetching, setIsFetching] = useState(true);
 
   // nuestras funciones de auth
@@ -17,7 +19,12 @@ function AuthWrapper(props) {
     try {
       const response = await verifyService();
       console.log("Token es valido");
-      console.log(response);
+      console.log(response.data)
+      if (response.data.role === "company") {
+        setIsCompany(true)
+      } else if (response.data.role === "admin") {
+        setIsAdmin(true)
+      }
       setIsLoggedIn(true);
       setLoggedUser(response.data);
       setIsFetching(false);
@@ -38,6 +45,8 @@ function AuthWrapper(props) {
     isLoggedIn,
     loggedUser,
     authenticateUser,
+    isCompany,
+    isAdmin
   };
 
   if (isFetching === true) {
