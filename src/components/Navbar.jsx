@@ -18,8 +18,8 @@ function Navbar() {
     return (
       <div>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/signup">Mi perfil</NavLink>
-        <NavLink to="/login">Próximos hackatones</NavLink>
+        <NavLink to="/profile">Mi perfil</NavLink>
+        <NavLink to="/hackaton-list">Próximos hackatones</NavLink>
         <NavLink to="/">Tutoriales</NavLink>
         <NavLink to="/">Mapa</NavLink>
         <NavLink to="/">Calendario</NavLink>
