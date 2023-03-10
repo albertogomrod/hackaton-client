@@ -8,8 +8,8 @@ const deleteProfileService = ()=>{
     return service.delete(`/profile/delete`)
 }
 
-const editProfileService = (profileId, updatedProfile) => {
-    return service.patch(`/profile/edit/${profileId}`, updatedProfile)
+const editProfileService = (updatedProfile) => {
+    return service.patch(`/profile/edit`, updatedProfile)
 }
 
 export {

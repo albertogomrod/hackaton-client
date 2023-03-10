@@ -18,6 +18,7 @@ import TutorialEdit from "./pages/tutorial/TutorialEdit";
 import TutorialCreate from "./pages/tutorial/TutorialCreate";
 
 import Profile from "./pages/profile/Profile";
+import ProfileEdit from "./pages/profile/ProfileEdit";
 
 import Error from './pages/Error';
 import NotFound from './pages/NotFound';
@@ -51,6 +52,7 @@ function App() {
         <Route path= "/tutorial/create" element= {<IsAdmin> <TutorialCreate /> </IsAdmin> } /> 
 
         <Route path= "/profile" element= {<Profile />}/>
+        <Route path= "/profile/edit" element= {<ProfileEdit />}/>
 
         {/* Rutas Error */}
         <Route path="/error" element={<Error />} />

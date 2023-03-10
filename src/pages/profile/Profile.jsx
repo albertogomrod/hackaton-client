@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -14,8 +13,8 @@ function Profile() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const {authenticateUser } = useContext(AuthContext);
-  
+  const { authenticateUser } = useContext(AuthContext);
+
   const [profile, setProfile] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
 
@@ -44,7 +43,6 @@ function Profile() {
     }
   };
 
-
   return (
     <div>
       <h3>Mi perfil</h3>
@@ -58,7 +56,7 @@ function Profile() {
           <p>Tecnologías: {profile.tech}</p>
           <p>Comunidad Autónoma: {profile.comunidadAutonoma}</p>
 
-          <Link to={`profile/edit/${params._id}`}>
+          <Link to={`/profile/edit`}>
             <button>Editar perfil</button>
           </Link>
           <button onClick={handleDeleteProfile}>Borrar usuario</button>
