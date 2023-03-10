@@ -1,9 +1,10 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
 function Navbar() {
   const navigate = useNavigate();
+  const params = useParams()
 
   const { isLoggedIn, authenticateUser, isAdmin, isCompany } = useContext(AuthContext);
 
@@ -20,7 +21,7 @@ function Navbar() {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/profile">Mi perfil</NavLink>
         <NavLink to="/hackaton-list">Próximos hackatones</NavLink>
-        <NavLink to="/">Tutoriales</NavLink>
+        <NavLink to="/tutorial-list">Tutoriales</NavLink>
         <NavLink to="/">Mapa</NavLink>
         <NavLink to="/">Calendario</NavLink>
         { isCompany === true ? <NavLink to="/">Crear un hackaton</NavLink> : null}

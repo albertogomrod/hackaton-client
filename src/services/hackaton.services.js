@@ -13,18 +13,22 @@ const createHackatonService = (newHackaton) => {
 }
 
 const editHackatonService = (hackatonId, updatedHackaton) => {
-    return service.patch(`hackaton/edit/${hackatonId}`, updatedHackaton)
+    return service.patch(`/hackaton/edit/${hackatonId}`, updatedHackaton)
 }
 
 const deleteHackatonService = (hackatonId) => {
-    return service.patch(`/delete/${hackatonId}`)
+    return service.patch(`/hackaton/delete/${hackatonId}`)
 }
 
+const getHackatonByCityService = () => {
+    return service.get("/hackaton/cercaDeTi")
+}
 
 export {
     getAllHackatonsService,
     getHackatonDetailsService,
     createHackatonService,
     editHackatonService,
-    deleteHackatonService
+    deleteHackatonService,
+    getHackatonByCityService
 }

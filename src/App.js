@@ -44,7 +44,7 @@ function App() {
 
         <Route path= "/hackaton/details/:hackatonId" element= {<HackatonDetails />}/>
         <Route path= "/hackaton/edit/:hackatonId" element= {<IsCompany> <HackatonEdit /></IsCompany>}/>
-        <Route path= "/hackaton/create/" element= {<IsCompany> <HackatonCreate /> </IsCompany>}/>
+        <Route path= "/hackaton/create" element= {<IsCompany> <HackatonCreate /> </IsCompany>}/>
 
         <Route path= "/tutorial/details/:tutorialId" element= {<TutorialDetails />}/>
         <Route path= "/tutorial/edit/:tutorialId" element= {<IsAdmin> <TutorialEdit /> </IsAdmin>}/>

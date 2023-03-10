@@ -17,7 +17,7 @@ const editTutorialService = (tutorialId, updatedTutorial) => {
 }
 
 const deleteTutorialService = (tutorialId) => {
-    return service.patch(`/delete/${tutorialId}`)
+    return service.delete(`/delete/${tutorialId}`)
 }
 
 

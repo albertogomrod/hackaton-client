@@ -6,6 +6,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [comunidadAutonoma, setComunidadAutonoma] = useState("");
   const [errorMessage, seterrorMessage] = useState("");
 
   const navigate = useNavigate();
@@ -14,12 +15,16 @@ function Signup() {
   const handleUsernameChange = (e) => setUsername(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
+  const handleComunidadAutonomaChange = (e) => setComunidadAutonoma(e.target.value);
+
+
   const handleSignup = async (e) => {
     e.preventDefault();
     const newUser = {
       email,
       username,
       password,
+      comunidadAutonoma,
     };
     try {
       await signupService(newUser);
@@ -65,6 +70,16 @@ function Signup() {
           name="password"
           value={password}
           onChange={handlePasswordChange}
+        />
+
+        <br />
+
+        <label>Comunidad Autónoma:</label>
+        <input
+          type="comunidadAutonoma"
+          name="comunidadAutonoma"
+          value={comunidadAutonoma}
+          onChange={handleComunidadAutonomaChange}
         />
 
         <br />
