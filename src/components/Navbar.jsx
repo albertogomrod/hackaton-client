@@ -24,7 +24,7 @@ function Navbar() {
         <NavLink to="/tutorial-list">Tutoriales</NavLink>
         <NavLink to="/">Mapa</NavLink>
         <NavLink to="/">Calendario</NavLink>
-        { isCompany === true ? <NavLink to="/">Crear un hackaton</NavLink> : null}
+        { isCompany === true ? <NavLink to="/hackaton/create">Crear un hackaton</NavLink> : null}
         { isAdmin === true ? <NavLink to="/">Crear un tutorial</NavLink> : null}
         <span onClick={handleLogout}>Cerrar sesion</span>
       </div>

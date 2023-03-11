@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createHackatonService } from "../../services/hackaton.services";
+import tecnologias from "../../utils/tecnologias";
+import comunidadesAutonomas from "../../utils/comunidades";
+import nivel from "../../utils/nivel";
 
 function HackatonCreate() {
-
-  const navigate= useNavigate()
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
@@ -14,44 +16,38 @@ function HackatonCreate() {
   const [level, setLevel] = useState("");
   const [tech, setTech] = useState("");
 
-  const handleTitleChange = (event) => setTitle(event.target.value);
-  const handleDateChange = (event) => setDate(event.target.value);
-  const handlePhotoChange = (event) => setPhoto(event.target.value);
-  const handleDescriptionChange = (event) => setDescription(event.target.value);
-  const handleComunidadAutonomaChange = (event) => setComunidadAutonoma(event.target.value);
-  const handleLevelChange = (event) => setLevel(event.target.value);
-  const handleTechChange = (event) => setTech(event.target.value);
-
+  const handleTitleChange = (e) => setTitle(e.target.value);
+  const handleDateChange = (e) => setDate(e.target.value);
+  const handlePhotoChange = (e) => setPhoto(e.target.value);
+  const handleDescriptionChange = (e) => setDescription(e.target.value);
+  const handleComunidadAutonomaChange = (e) =>
+    setComunidadAutonoma(e.target.value);
+  const handleLevelChange = (e) => setLevel(e.target.value);
+  const handleTechChange = (e) => setTech(e.target.value);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      
       const newHackaton = {
         title: title,
         date: date,
         photo: photo,
         description: description,
         comunidadAutonoma: comunidadAutonoma,
-        level:level,
-        tech:tech,
-      }
+        level: level,
+        tech: tech,
+      };
 
-      await createHackatonService(newHackaton)
-
-
+      await createHackatonService(newHackaton);
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
-
   };
-
-
 
   return (
     <div>
-      <h3>Editar Hackaton</h3>
+      <h3>Crear un Hackaton</h3>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Título: </label>
@@ -70,10 +66,10 @@ function HackatonCreate() {
           value={description}
         />
         <br />
-        
-        <label htmlFor="date">Fecha: </label>
+
+        <label htmlFor="date">Fecha del evento: </label>
         <input
-          type="text"
+          type="date"
           name="date"
           onChange={handleDateChange}
           value={date}
@@ -90,36 +86,50 @@ function HackatonCreate() {
         <br />
 
         <label htmlFor="comunidadAutonoma">Comunidad Autónoma: </label>
-        <input
-          type="text"
+        <select
           name="comunidadAutonoma"
-          onChange={handleComunidadAutonomaChange}
           value={comunidadAutonoma}
-        />
+          onChange={handleComunidadAutonomaChange}
+        >
+          <option value="">-- Seleccione una comunidad --</option>
+          {comunidadesAutonomas.map((eachComunidadAutonoma) => (
+            <option value={eachComunidadAutonoma} key={eachComunidadAutonoma}>
+              {eachComunidadAutonoma}
+            </option>
+          ))}
+        </select>
         <br />
 
         <label htmlFor="level">Nivel: </label>
-        <input
-          type="text"
+        <select
           name="level"
-          onChange={handleLevelChange}
           value={level}
-        />
+          onChange={handleLevelChange}
+        >
+          <option value="">- Seleccione un nivel de experiencia -</option>
+          {nivel.map((eachNivel) => (
+            <option value={eachNivel} key={eachNivel}>
+              {eachNivel}
+            </option>
+          ))}
+        </select>
         <br />
 
         <label htmlFor="tech">Tecnologías </label>
-        <input
-          type="text"
-          name="tech"
-          onChange={handleTechChange}
-          value={tech}
-        />
+        <select name="tech" value={tech} onChange={handleTechChange}>
+          <option value="">-- Seleccione una tecnología --</option>
+          {tecnologias.map((eachTecnologia) => (
+            <option value={eachTecnologia} key={eachTecnologia}>
+              {eachTecnologia}
+            </option>
+          ))}
+        </select>
         <br />
 
         <button type="submit">Crear nuevo Hackaton</button>
       </form>
     </div>
-  )
+  );
 }
 
-export default HackatonCreate
+export default HackatonCreate;

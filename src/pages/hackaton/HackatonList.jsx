@@ -38,9 +38,7 @@ function HackatonList() {
       {allHackatones.map((eachHackaton) => {
         return (
           <div key={eachHackaton._id}>
-            <Link to={`/hackaton/details/${eachHackaton._id}`}>
-              {eachHackaton.title}
-            </Link>
+            <h3>{eachHackaton.title}</h3>
             <br />
             <img src={eachHackaton.photo} alt="portadaHackaton" />
             <br />
@@ -49,7 +47,12 @@ function HackatonList() {
             <p>{eachHackaton.description}</p>
             <p>Nivel: {eachHackaton.level}</p>
             <p>Tecnologías: {eachHackaton.tech}</p>
-            <button>Mas información</button>
+            <button>
+              {" "}
+              <Link to={`/hackaton/details/${eachHackaton._id}`}>
+                Mas información
+              </Link>
+            </button>
           </div>
         );
       })}

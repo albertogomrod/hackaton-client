@@ -1,6 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getHackatonDetailsService, editHackatonService } from "../../services/hackaton.services";
+import {
+  getHackatonDetailsService,
+  editHackatonService,
+} from "../../services/hackaton.services";
+import tecnologias from "../../utils/tecnologias";
+import comunidadesAutonomas from "../../utils/comunidades";
 
 function HackatonEdit() {
   const params = useParams();
@@ -18,7 +23,8 @@ function HackatonEdit() {
   const handleDateChange = (event) => setDate(event.target.value);
   const handlePhotoChange = (event) => setPhoto(event.target.value);
   const handleDescriptionChange = (event) => setDescription(event.target.value);
-  const handleComunidadAutonomaChange = (event) => setComunidadAutonoma(event.target.value);
+  const handleComunidadAutonomaChange = (event) =>
+    setComunidadAutonoma(event.target.value);
   const handleLevelChange = (event) => setLevel(event.target.value);
   const handleTechChange = (event) => setTech(event.target.value);
 
@@ -45,7 +51,6 @@ function HackatonEdit() {
       setPhoto(photo);
       setTech(tech);
       setTitle(title);
-
     } catch (error) {
       console.log(error);
     }
@@ -55,25 +60,22 @@ function HackatonEdit() {
     event.preventDefault();
 
     try {
-      
       const updatedHackaton = {
         title: title,
         date: date,
         photo: photo,
         description: description,
         comunidadAutonoma: comunidadAutonoma,
-        level:level,
-        tech:tech,
-      }
+        level: level,
+        tech: tech,
+      };
 
-      await editHackatonService(params.hackatonId, updatedHackaton)
+      await editHackatonService(params.hackatonId, updatedHackaton);
 
-      navigate(`/hackaton/details/${params.hackatonId}`)
-
+      navigate(`/hackaton/details/${params.hackatonId}`);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-
   };
 
   return (
@@ -97,7 +99,7 @@ function HackatonEdit() {
           value={description}
         />
         <br />
-        
+
         <label htmlFor="date">Fecha: </label>
         <input
           type="text"
@@ -117,12 +119,18 @@ function HackatonEdit() {
         <br />
 
         <label htmlFor="comunidadAutonoma">Comunidad Autónoma: </label>
-        <input
-          type="text"
+        <select
           name="comunidadAutonoma"
-          onChange={handleComunidadAutonomaChange}
           value={comunidadAutonoma}
-        />
+          onChange={handleComunidadAutonomaChange}
+        >
+          <option value="">-- Seleccione una comunidad --</option>
+          {comunidadesAutonomas.map((eachComunidadAutonoma) => (
+            <option value={eachComunidadAutonoma} key={eachComunidadAutonoma}>
+              {eachComunidadAutonoma}
+            </option>
+          ))}
+        </select>
         <br />
 
         <label htmlFor="level">Nivel: </label>
@@ -135,12 +143,18 @@ function HackatonEdit() {
         <br />
 
         <label htmlFor="tech">Tecnologías </label>
-        <input
-          type="text"
+        <select
           name="tech"
-          onChange={handleTechChange}
           value={tech}
-        />
+          onChange={handleTechChange}
+        >
+          <option value="">-- Seleccione una tecnología --</option>
+          {tecnologias.map((eachTecnologia) => (
+            <option value={eachTecnologia} key={eachTecnologia}>
+              {eachTecnologia}
+            </option>
+          ))}
+        </select>
         <br />
 
         <button type="submit">Guardar cambios</button>

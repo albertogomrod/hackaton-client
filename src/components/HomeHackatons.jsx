@@ -32,7 +32,7 @@ function HomeHackatons() {
       <h3>Próximos hackatones</h3>
       {allHackatones.map((eachHackaton) => {
         return (
-          <img src={eachHackaton.photo} alt="hackaton" />
+          <img key={eachHackaton._id} src={eachHackaton.photo} alt="hackaton" />
         )
       })}
       {allHackatones.length === 0 ? (

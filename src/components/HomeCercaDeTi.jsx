@@ -39,7 +39,7 @@ function HomeCercaDeTi() {
             <h3>Cerca de tí</h3>
             {hackatonsByCity.map((eachHackaton) => {
               return (
-                <div key={eachHackaton.id} >
+                <div key={eachHackaton._id} >
                 <img src={eachHackaton.photo} alt="hackaton" />
                 </div>
               )

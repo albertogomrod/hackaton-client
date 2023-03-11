@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signupService } from "../../services/auth.services";
+import comunidadesAutonomas from "../../utils/comunidades";
+import nivel from "../../utils/nivel";
+
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -8,14 +11,17 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [comunidadAutonoma, setComunidadAutonoma] = useState("");
   const [errorMessage, seterrorMessage] = useState("");
+  const [level, setLevel] = useState("")
+  const [role, setRole] = useState("normal")
 
   const navigate = useNavigate();
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handleUsernameChange = (e) => setUsername(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
-
   const handleComunidadAutonomaChange = (e) => setComunidadAutonoma(e.target.value);
+  const handleLevelChange = (e) => setLevel(e.target.value);
+  const handleRoleChange = (e) => setRole(e.target.value)
 
 
   const handleSignup = async (e) => {
@@ -25,6 +31,8 @@ function Signup() {
       username,
       password,
       comunidadAutonoma,
+      level,
+      role
     };
     try {
       await signupService(newUser);
@@ -74,15 +82,50 @@ function Signup() {
 
         <br />
 
-        <label>Comunidad Autónoma:</label>
-        <input
-          type="comunidadAutonoma"
+        <label htmlFor="comunidadAutonoma">Comunidad Autónoma: </label>
+        <select
           name="comunidadAutonoma"
           value={comunidadAutonoma}
           onChange={handleComunidadAutonomaChange}
-        />
+        >
+          <option value="">-- Seleccione una comunidad --</option>
+          {comunidadesAutonomas.map((eachComunidadAutonoma) => (
+            <option value={eachComunidadAutonoma} key={eachComunidadAutonoma}>
+              {eachComunidadAutonoma}
+            </option>
+          ))}
+        </select>
 
         <br />
+        
+        <label htmlFor="level">¿Cuál es tu nivel? </label>
+        <select
+          name="level"
+          value={level}
+          onChange={handleLevelChange}
+        >
+          <option value="">- Seleccione un nivel de experiencia -</option>
+          {nivel.map((eachNivel) => (
+            <option value={eachNivel} key={eachNivel}>
+              {eachNivel}
+            </option>
+          ))}
+        </select>
+
+        <br />
+        
+        <label htmlFor="role">¿Qué tipo de usuario eres?</label>
+        <br />
+        <label> 
+        <input type="checkbox" name="role" value="normal" checked={role === 'normal'} onChange={handleRoleChange} />
+        Usuario Normal
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" name="role" value="company" checked={role === 'company'} onChange={handleRoleChange} />
+        Compañía
+      </label>
+      <br />
 
         {errorMessage !== "" ? <p>{errorMessage}</p> : null}
 

@@ -31,13 +31,12 @@ function HomeTutorials() {
       <h3>Tutoriales</h3>
       {allTutoriales.map((eachTutorial) => {
         return (
-          <img src={eachTutorial.photo} alt="tutorial" />
+          <img key={eachTutorial._id} src={eachTutorial.photo} alt="tutorial" />
         )
       })}
       {allTutoriales.length === 0 ? (
         <h5>Todavía no hay tutoriales disponibles</h5>
-      ) : null}
-      <Link to="/tutorial-list">Ver todos los tutoriales</Link>
+      ) : <Link to="/tutorial-list">Ver todos los tutoriales</Link>}
     </div>
   )
 }
