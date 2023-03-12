@@ -4,39 +4,61 @@ import { createHackatonService } from "../../services/hackaton.services";
 import tecnologias from "../../utils/tecnologias";
 import comunidadesAutonomas from "../../utils/comunidades";
 import nivel from "../../utils/nivel";
+import { uploadImageHackatonService } from "../../services/upload.services";
 
 function HackatonCreate() {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
   const [description, setDescription] = useState("");
   const [comunidadAutonoma, setComunidadAutonoma] = useState("");
   const [level, setLevel] = useState("");
   const [tech, setTech] = useState("");
 
+  const [isUploading, setIsUploading] = useState(false);
+
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDateChange = (e) => setDate(e.target.value);
-  const handlePhotoChange = (e) => setPhoto(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
   const handleComunidadAutonomaChange = (e) =>
     setComunidadAutonoma(e.target.value);
   const handleLevelChange = (e) => setLevel(e.target.value);
   const handleTechChange = (e) => setTech(e.target.value);
+  const handleFileUpload = async (event) => {
+    if (!event.target.files[0]) {
+      return;
+    }
+
+    setIsUploading(true);
+
+    const uploadData = new FormData();
+    uploadData.append("image", event.target.files[0]);
+
+    try {
+      const response = await uploadImageHackatonService(uploadData);
+      console.log(response.data.imageUrl)
+      setImageUrl(response.data.imageUrl);
+
+      setIsUploading(false);
+    } catch (error) {
+      navigate("/error");
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const newHackaton = {
-        title: title,
-        date: date,
-        photo: photo,
-        description: description,
-        comunidadAutonoma: comunidadAutonoma,
-        level: level,
-        tech: tech,
+        title,
+        date,
+        photo: imageUrl,
+        description,
+        comunidadAutonoma,
+        level,
+        tech,
       };
 
       await createHackatonService(newHackaton);
@@ -76,13 +98,24 @@ function HackatonCreate() {
         />
         <br />
 
-        <label htmlFor="photo">Foto de portada: </label>
+        <label>Image: </label>
         <input
-          type="text"
-          name="photo"
-          onChange={handlePhotoChange}
-          value={photo}
+          type="file"
+          name="image"
+          onChange={handleFileUpload}
+          disabled={isUploading}
         />
+        {/* below disabled prevents the user from attempting another upload while one is already happening */}
+
+        {/* to render a loading message or spinner while uploading the picture */}
+        {isUploading ? <h3>... uploading image</h3> : null}
+
+        {/* below line will render a preview of the image from cloudinary */}
+        {imageUrl ? (
+          <div>
+            <img src={imageUrl} alt="img" width={200} />
+          </div>
+        ) : null}
         <br />
 
         <label htmlFor="comunidadAutonoma">Comunidad Autónoma: </label>
@@ -101,11 +134,7 @@ function HackatonCreate() {
         <br />
 
         <label htmlFor="level">Nivel: </label>
-        <select
-          name="level"
-          value={level}
-          onChange={handleLevelChange}
-        >
+        <select name="level" value={level} onChange={handleLevelChange}>
           <option value="">- Seleccione un nivel de experiencia -</option>
           {nivel.map((eachNivel) => (
             <option value={eachNivel} key={eachNivel}>
