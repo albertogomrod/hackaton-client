@@ -19,6 +19,8 @@ import TutorialCreate from "./pages/tutorial/TutorialCreate";
 
 import Profile from "./pages/profile/Profile";
 import ProfileEdit from "./pages/profile/ProfileEdit";
+import HackatonesCreados from "./pages/profile/HackatonesCreados";
+import TutorialesCreados from "./pages/profile/TutorialesCreados";
 
 import Error from './pages/Error';
 import NotFound from './pages/NotFound';
@@ -27,6 +29,7 @@ import NotFound from './pages/NotFound';
 import Navbar from "./components/Navbar";
 import IsAdmin from "./components/IsAdmin"
 import IsCompany from "./components/IsCompany"
+
 
 
 function App() {
@@ -53,6 +56,9 @@ function App() {
 
         <Route path= "/profile" element= {<Profile />}/>
         <Route path= "/profile/edit" element= {<ProfileEdit />}/>
+        <Route path= "/profile/hackaton-list-company" element= { <IsCompany> <HackatonesCreados /></IsCompany>}/>
+        <Route path= "/profile/tutorial-list-admin" element= { <IsAdmin> <TutorialesCreados />  </IsAdmin>}/>
+
 
         {/* Rutas Error */}
         <Route path="/error" element={<Error />} />

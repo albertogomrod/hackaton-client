@@ -37,13 +37,15 @@ function HomeCercaDeTi() {
         return (
           <div>
             <h3>Cerca de tí</h3>
+            <div style={{display: "flex", flexDirection: "row", gap: "20px", justifyContent: "center"}}>
             {hackatonsByCity.map((eachHackaton) => {
               return (
                 <div key={eachHackaton._id} >
-                <img src={eachHackaton.photo} alt="hackaton" />
+                <Link to={`/hackaton/details/${eachHackaton._id}`} ><img src={eachHackaton.photo} alt="hackaton" width={150} /></Link>
                 </div>
               )
             })}
+            </div>
           </div>
         )
       }

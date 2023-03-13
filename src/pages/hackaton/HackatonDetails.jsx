@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { getHackatonDetailsService } from "../../services/hackaton.services";
+import {
+  getHackatonDetailsService,
+  deleteHackatonService,
+} from "../../services/hackaton.services";
+
 
 function HackatonDetails() {
   const navigate = useNavigate();
   const params = useParams();
-  console.log(params)
+  console.log(params);
 
   const [hackatonDetails, setHackatonDetails] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
@@ -29,11 +33,20 @@ function HackatonDetails() {
     return <h3>Cargando...</h3>;
   }
 
+  const handleDeleteHackaton = async () => {
+    try {
+      await deleteHackatonService(params.hackatonId);
+      console.log(params.hackatonId);
+      navigate("/hackaton-list");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div key={hackatonDetails._id}>
-      <Link to={`/hackaton/details/${hackatonDetails._id}`}>
-        {hackatonDetails.title}
-      </Link>
+      <h3>{hackatonDetails.title}</h3>
+      <button onClick={() => navigate(-1)}>← Back</button>
       <br />
       <img src={hackatonDetails.photo} alt="portadaHackaton" />
       <br />
@@ -43,6 +56,11 @@ function HackatonDetails() {
       <p>Nivel: {hackatonDetails.level}</p>
       <p>Tecnologías: {hackatonDetails.tech}</p>
       <button>Asistir</button>
+      <br />
+      <button>
+        <Link to={`/hackaton/edit/${params.hackatonId}`}>Editar Hackaton</Link>
+      </button>
+      <button onClick={handleDeleteHackaton}>Borrar</button>
     </div>
   );
 }

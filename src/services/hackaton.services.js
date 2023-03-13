@@ -17,7 +17,7 @@ const editHackatonService = (hackatonId, updatedHackaton) => {
 }
 
 const deleteHackatonService = (hackatonId) => {
-    return service.patch(`/hackaton/delete/${hackatonId}`)
+    return service.delete(`/hackaton/delete/${hackatonId}`)
 }
 
 const getHackatonByCityService = () => {

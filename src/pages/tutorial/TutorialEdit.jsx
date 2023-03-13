@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getTutorialDetailsService, editTutorialService } from "../../services/tutorial.services";
+import tecnologias from "../../utils/tecnologias";
 
 function TutorialEdit() {
   const params = useParams();
@@ -93,13 +94,19 @@ function TutorialEdit() {
           value={links}
         />
         <br />
-        <label htmlFor="tech">Tecnologías: </label>
-        <input
-          type="text"
+        <label htmlFor="tech">Tecnologías </label>
+        <select
           name="tech"
-          onChange={handleTechChange}
           value={tech}
-        />
+          onChange={handleTechChange}
+        >
+          <option value="">-- Seleccione una tecnología --</option>
+          {tecnologias.map((eachTecnologia) => (
+            <option value={eachTecnologia} key={eachTecnologia}>
+              {eachTecnologia}
+            </option>
+          ))}
+        </select>
         <br />
         <button type="submit">Guardar cambios</button>
       </form>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { getTutorialDetailsService } from "../../services/tutorial.services.js"
+import { getTutorialDetailsService, deleteTutorialService } from "../../services/tutorial.services.js"
 
 function TutorialDetails() {
 
@@ -29,18 +29,30 @@ function TutorialDetails() {
   if (isFetching === true) {
     return <h3>Cargando...</h3>;
   }
+
+  const handleDeleteTutorial = async () => {
+    try {
+      await deleteTutorialService(params.tutorialId)
+      console.log(params.tutorialId);
+      navigate("/hackaton-list");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
   return (
     <div key={tutorialDetails._id}>
-      <Link to={`/tutorial/details/${tutorialDetails._id}`}>
-        {tutorialDetails.title}
-      </Link>
+      <h3>{tutorialDetails.title}</h3>
+      <button onClick={() => navigate(-1)}>← Back</button>
       <br />
       <img src={tutorialDetails.image} alt="portadaTutorial" />
       <br />
       <p>{tutorialDetails.description}</p>
       <p>Links {tutorialDetails.links}</p>
       <p>Tecnologías: {tutorialDetails.tech}</p>
+      <br />
+      <button><Link to={`/tutorial/edit/${params.tutorialId}`}>Editar Tutorial</Link></button>
+      <button onClick={handleDeleteTutorial}>Borrar</button>
     </div>
   );
 }

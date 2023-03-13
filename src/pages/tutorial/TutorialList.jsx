@@ -44,7 +44,7 @@ function TutorialList() {
             <br />
             <h6>{eachTutorial.description}</h6>
             <p>Tecnologías: {eachTutorial.tech}</p>
-            <Link to={`/hackaton/details/${eachTutorial._id}`}>
+            <Link to={`/tutorial/details/${eachTutorial._id}`}>
               Más información
             </Link>
           </div>

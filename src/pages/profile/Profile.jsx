@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 
+import { NavLink } from "react-router-dom";
+
 import {
   getProfileService,
   deleteProfileService,
@@ -13,7 +15,7 @@ function Profile() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const { authenticateUser } = useContext(AuthContext);
+  const { authenticateUser, isAdmin, isCompany } = useContext(AuthContext);
 
   const [profile, setProfile] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
@@ -55,7 +57,15 @@ function Profile() {
           <p>Email: {profile.email}</p>
           <p>Tecnologías: {profile.tech}</p>
           <p>Comunidad Autónoma: {profile.comunidadAutonoma}</p>
-
+          {isCompany === true ? (
+            <NavLink to="/profile/hackaton-list-company">
+              Tus hackatones creados
+            </NavLink>
+          ) : null}
+          {isAdmin === true ? (
+            <NavLink to="/profile/tutorial-list-admin">Tus tutoriales creados</NavLink>
+          ) : null}
+          <br />
           <Link to={`/profile/edit`}>
             <button>Editar perfil</button>
           </Link>

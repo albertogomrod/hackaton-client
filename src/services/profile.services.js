@@ -12,8 +12,13 @@ const editProfileService = (updatedProfile) => {
     return service.patch(`/profile/edit`, updatedProfile)
 }
 
+const getHackatonByProfile = () => {
+    return service.get("/profile/hackaton-list-company")
+}
+
 export {
     deleteProfileService,
     editProfileService,
     getProfileService,
+    getHackatonByProfile
 }

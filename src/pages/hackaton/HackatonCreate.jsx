@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createHackatonService } from "../../services/hackaton.services";
 import tecnologias from "../../utils/tecnologias";
@@ -16,8 +16,27 @@ function HackatonCreate() {
   const [comunidadAutonoma, setComunidadAutonoma] = useState("");
   const [level, setLevel] = useState("");
   const [tech, setTech] = useState("");
+  const [isCreated, setIsCreated] = useState(false);
+  const [countDown, setCountDown] = useState(0);
 
   const [isUploading, setIsUploading] = useState(false);
+
+  
+
+  useEffect(() => {
+    if (isCreated === false && countDown === 0) return;
+    if (isCreated === true && countDown === 0) navigate("/");
+    
+    const instervalId = setInterval(() => {
+      setCountDown((prevCount) => prevCount - 1)
+    }, 1000)
+    
+    return () => clearInterval(instervalId);
+  }, [countDown]);
+
+  const handleStartCountdown = () => {
+    setCountDown(5);
+  };
 
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDateChange = (e) => setDate(e.target.value);
@@ -26,7 +45,7 @@ function HackatonCreate() {
     setComunidadAutonoma(e.target.value);
   const handleLevelChange = (e) => setLevel(e.target.value);
   const handleTechChange = (e) => setTech(e.target.value);
-  
+
   const handleFileUpload = async (event) => {
     if (!event.target.files[0]) {
       return;
@@ -40,7 +59,7 @@ function HackatonCreate() {
     try {
       const response = await uploadImageHackatonService(uploadData);
       setImageUrl(response.data.imageUrl);
-      console.log(imageUrl)
+      console.log(imageUrl);
 
       setIsUploading(false);
     } catch (error) {
@@ -63,6 +82,7 @@ function HackatonCreate() {
       };
 
       await createHackatonService(newHackaton);
+      setIsCreated(true)
     } catch (error) {
       navigate("/error");
     }
@@ -156,8 +176,14 @@ function HackatonCreate() {
         </select>
         <br />
 
-        <button type="submit">Crear nuevo Hackaton</button>
+        <button type="submit" onClick={handleStartCountdown}>Crear nuevo Hackaton</button>
       </form>
+      {isCreated === true ? (
+        <div>
+          <p>Hackaton creado correctamente</p>
+          <p>Será redirigido a la página principal en... {countDown}</p>
+        </div>
+      ) : null}
     </div>
   );
 }

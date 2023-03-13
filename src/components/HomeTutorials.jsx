@@ -29,11 +29,13 @@ function HomeTutorials() {
   return (
 <div>
       <h3>Tutoriales</h3>
+      <div style={{display: "flex", flexDirection: "row", gap: "20px", justifyContent: "center"}}>
       {allTutoriales.map((eachTutorial) => {
         return (
           <img key={eachTutorial._id} src={eachTutorial.photo} alt="tutorial" />
         )
       })}
+      </div>
       {allTutoriales.length === 0 ? (
         <h5>Todavía no hay tutoriales disponibles</h5>
       ) : <Link to="/tutorial-list">Ver todos los tutoriales</Link>}
