@@ -16,9 +16,14 @@ const getHackatonByProfile = () => {
     return service.get("/profile/hackaton-list-company")
 }
 
+const getTutorialByProfile = () => {
+    return service.get("/profile/tutorial-list-admin")
+}
+
 export {
     deleteProfileService,
     editProfileService,
     getProfileService,
-    getHackatonByProfile
+    getHackatonByProfile,
+    getTutorialByProfile
 }

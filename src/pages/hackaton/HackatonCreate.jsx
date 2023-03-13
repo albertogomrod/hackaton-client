@@ -18,6 +18,7 @@ function HackatonCreate() {
   const [tech, setTech] = useState("");
   const [isCreated, setIsCreated] = useState(false);
   const [countDown, setCountDown] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [isUploading, setIsUploading] = useState(false);
 
@@ -80,11 +81,17 @@ function HackatonCreate() {
         level,
         tech,
       };
-
       await createHackatonService(newHackaton);
       setIsCreated(true)
+      setErrorMessage("")
     } catch (error) {
-      navigate("/error");
+      if (error.response.status === 400) {
+        setErrorMessage(error.response.data.errorMessage);
+      } else if (error.response.status === 409) {
+        setErrorMessage(error.response.data.errorMessage);
+      } else {
+        navigate("/error");
+      }
     }
   };
 
@@ -178,6 +185,7 @@ function HackatonCreate() {
 
         <button type="submit" onClick={handleStartCountdown}>Crear nuevo Hackaton</button>
       </form>
+      {errorMessage !== "" ? <p>{errorMessage}</p> : null}
       {isCreated === true ? (
         <div>
           <p>Hackaton creado correctamente</p>

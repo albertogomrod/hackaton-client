@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 import {
   getHackatonDetailsService,
   deleteHackatonService,
+  updateHackatonArrService
 } from "../../services/hackaton.services";
 
 
 function HackatonDetails() {
   const navigate = useNavigate();
   const params = useParams();
-  console.log(params);
+  const {hackatonId} = params
 
   const [hackatonDetails, setHackatonDetails] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
@@ -19,9 +20,21 @@ function HackatonDetails() {
     getData();
   }, []);
 
+  // useEffect(() => {
+  //   updateData();()
+  // }, []);
+
+  const updateData = async () => {
+    try {
+      await updateHackatonArrService(hackatonId)
+    } catch (error) {
+      navigate("/error");
+    }
+  }
+
   const getData = async () => {
     try {
-      const response = await getHackatonDetailsService(params.hackatonId);
+      const response = await getHackatonDetailsService(hackatonId);
       setHackatonDetails(response.data);
       setIsFetching(false);
     } catch (error) {
@@ -33,15 +46,6 @@ function HackatonDetails() {
     return <h3>Cargando...</h3>;
   }
 
-  const handleDeleteHackaton = async () => {
-    try {
-      await deleteHackatonService(params.hackatonId);
-      console.log(params.hackatonId);
-      navigate("/hackaton-list");
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div key={hackatonDetails._id}>
@@ -55,12 +59,8 @@ function HackatonDetails() {
       <p>{hackatonDetails.description}</p>
       <p>Nivel: {hackatonDetails.level}</p>
       <p>Tecnologías: {hackatonDetails.tech}</p>
-      <button>Asistir</button>
+      <button onClick={updateData}>Asistir</button>
       <br />
-      <button>
-        <Link to={`/hackaton/edit/${params.hackatonId}`}>Editar Hackaton</Link>
-      </button>
-      <button onClick={handleDeleteHackaton}>Borrar</button>
     </div>
   );
 }

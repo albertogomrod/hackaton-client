@@ -29,16 +29,6 @@ function TutorialDetails() {
   if (isFetching === true) {
     return <h3>Cargando...</h3>;
   }
-
-  const handleDeleteTutorial = async () => {
-    try {
-      await deleteTutorialService(params.tutorialId)
-      console.log(params.tutorialId);
-      navigate("/hackaton-list");
-    } catch (error) {
-      console.log(error);
-    }
-  };
   
   return (
     <div key={tutorialDetails._id}>
@@ -51,8 +41,6 @@ function TutorialDetails() {
       <p>Links {tutorialDetails.links}</p>
       <p>Tecnologías: {tutorialDetails.tech}</p>
       <br />
-      <button><Link to={`/tutorial/edit/${params.tutorialId}`}>Editar Tutorial</Link></button>
-      <button onClick={handleDeleteTutorial}>Borrar</button>
     </div>
   );
 }

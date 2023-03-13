@@ -34,6 +34,8 @@ function Login() {
     } catch (error) {
       if (error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
+      } else if (error.response.status === 411) {
+        setErrorMessage(error.response.data.errorMessage);
       } else {
         navigate("/error");
       }

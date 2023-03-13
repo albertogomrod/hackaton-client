@@ -14,6 +14,7 @@ function TutorialCreate() {
   const [tech, setTech] = useState("");
   const [isCreated, setIsCreated] = useState(false);
   const [countDown, setCountDown] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [isUploading, setIsUploading] = useState(false);
 
@@ -70,9 +71,13 @@ function TutorialCreate() {
       };
       await createTutorialService(newTutorial);
       setIsCreated(true)
-      navigate("/tutorial-list")
+      setErrorMessage("")
     } catch (error) {
-      navigate("/error");
+      if (error.response.status === 400) {
+        setErrorMessage(error.response.data.errorMessage);
+      } else {
+        navigate("/error");
+      }
     }
   };
   return (
@@ -135,6 +140,7 @@ function TutorialCreate() {
         <br />
         <button type="submit" onClick={handleStartCountdown}>Crear nuevo Tutorial</button>
       </form>
+      {errorMessage !== "" ? <p>{errorMessage}</p> : null}
       {isCreated === true ? (
         <div>
           <p>Tutorial creado correctamente</p>

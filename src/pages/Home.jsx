@@ -6,6 +6,7 @@ import HomeHackatons from "../components/HomeHackatons"
 import HomeTutorials from "../components/HomeTutorials"
 import HomeCercaDeTi from "../components/HomeCercaDeTi"
 import HomeNoLogged from "../components/HomeNoLogged"
+import HomeAsistencia from "../components/HomeAsistencia"
 
 function Home() {
 
@@ -16,6 +17,7 @@ function Home() {
       <div>
       <HomeHackatons />
       <HomeCercaDeTi />
+      <HomeAsistencia />
       <HomeTutorials />
       </div>
     )

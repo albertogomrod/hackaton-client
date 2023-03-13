@@ -24,11 +24,21 @@ const getHackatonByCityService = () => {
     return service.get("/hackaton/cercaDeTi")
 }
 
+const updateHackatonArrService = (hackatonId) => {
+    return service.patch(`/hackaton/assist/${hackatonId}`)
+}
+
+const getHackatonByAssistService = ()=>{
+    return service.get("/hackaton/assist")
+}
+
 export {
     getAllHackatonsService,
     getHackatonDetailsService,
     createHackatonService,
     editHackatonService,
     deleteHackatonService,
-    getHackatonByCityService
+    getHackatonByCityService,
+    updateHackatonArrService,
+    getHackatonByAssistService,
 }
