@@ -15,9 +15,11 @@ function TutorialEdit() {
   const handleDescriptionChange = (event) => setDescription(event.target.value);
   const handleLinksChange = (event) => setLinks(event.target.value);
   const handleTechChange = (event) => setTech(event.target.value);
+
   useEffect(() => {
     getData();
   }, []);
+
   const getData = async () => {
     try {
       const response = await getTutorialDetailsService(params.tutorialId);
@@ -37,6 +39,7 @@ function TutorialEdit() {
       console.log(error);
     }
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -53,6 +56,7 @@ function TutorialEdit() {
       console.log(error)
     }
   };
+  
   return (
     <div>
       <h3>Editar Tutorial</h3>

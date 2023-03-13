@@ -4,14 +4,18 @@ import { Link } from "react-router-dom";
 import { getTutorialDetailsService } from "../../services/tutorial.services.js"
 
 function TutorialDetails() {
+
   const navigate = useNavigate();
   const params = useParams();
   console.log(params)
+
   const [tutorialDetails, setTutorialDetails] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
+
   useEffect(() => {
     getData();
   }, []);
+
   const getData = async () => {
     try {
       const response = await getTutorialDetailsService(params.tutorialId);
@@ -25,6 +29,7 @@ function TutorialDetails() {
   if (isFetching === true) {
     return <h3>Cargando...</h3>;
   }
+  
   return (
     <div key={tutorialDetails._id}>
       <Link to={`/tutorial/details/${tutorialDetails._id}`}>

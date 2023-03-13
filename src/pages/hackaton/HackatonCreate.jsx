@@ -26,6 +26,7 @@ function HackatonCreate() {
     setComunidadAutonoma(e.target.value);
   const handleLevelChange = (e) => setLevel(e.target.value);
   const handleTechChange = (e) => setTech(e.target.value);
+  
   const handleFileUpload = async (event) => {
     if (!event.target.files[0]) {
       return;
@@ -38,8 +39,8 @@ function HackatonCreate() {
 
     try {
       const response = await uploadImageHackatonService(uploadData);
-      console.log(response.data.imageUrl)
       setImageUrl(response.data.imageUrl);
+      console.log(imageUrl)
 
       setIsUploading(false);
     } catch (error) {
