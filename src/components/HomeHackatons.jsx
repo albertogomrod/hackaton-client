@@ -30,17 +30,21 @@ function HomeHackatons() {
   return (
     <div>
       <h3>Próximos hackatones</h3>
-      <div style={{display: "flex", flexDirection: "row", gap: "20px", justifyContent: "center"}} >
-      {allHackatones.map((eachHackaton) => {
-        return (
-          <div key={eachHackaton._id}>
-          <Link to={`/hackaton/details/${eachHackaton._id}`}><img src={eachHackaton.photo} alt="hackaton" width={150} /></Link>
-          </div>
-        )
-      })}
-      {allHackatones.length === 0 ? (
-        <h5>Todavía no hay hackatones disponibles</h5>
-      ) : null}
+      <div style={{ overflowX: "auto", scrollBehavior: "smooth" }}>
+        <div style={{ display: "flex", flexDirection: "row", gap: "20px", justifyContent: "center" }}>
+          {allHackatones.map((eachHackaton) => {
+            return (
+              <div key={eachHackaton._id}>
+                <Link to={`/hackaton/details/${eachHackaton._id}`}>
+                  <img src={eachHackaton.photo} alt="hackaton" width={150} />
+                </Link>
+              </div>
+            )
+          })}
+          {allHackatones.length === 0 ? (
+            <h5>Todavía no hay hackatones disponibles</h5>
+          ) : null}
+        </div>
       </div>
       <Link to="/hackaton-list">Ver todos los hackatones disponibles</Link>
     </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAllTutorialsService } from "../services/tutorial.services.js";
+import { Link } from "react-router-dom";
 
 function Tutoriales(props) {
   const [allTutorials, setAllTutorials] = useState(null);
@@ -30,26 +31,40 @@ function Tutoriales(props) {
     setMatchedArr(filteredTutoriales);
   }, [allTutorials, techToSearch]);
 
+  console.log(matchedArr);
 
   if (isFetching === true) {
     return <h3>Cargando...</h3>;
   } else {
     return (
       <div>
-        <h3>Tutoriales para prepararte para este hackaton!</h3>
-        {matchedArr !== null
-          ? matchedArr.map((eachTutorial) => {
+        {matchedArr && matchedArr.length > 0 && (
+          <h3>Tutoriales para prepararte para este hackaton!</h3>
+        )}
+        {matchedArr ? (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "20px",
+              justifyContent: "center",
+            }}
+          >
+            {matchedArr.map((eachTutorial) => {
               return (
-                <>
+                <div key={eachTutorial.title}>
+                <Link to={`/tutorial/details/${eachTutorial._id}`}>
                   <img
                     src={eachTutorial.image}
                     alt="foto-tutorial"
-                    width={50}
+                    width={150}
                   />
-                </>
+                </Link>
+                </div>
               );
-            })
-          : null}
+            })}
+          </div>
+        ) : null}
       </div>
     );
   }

@@ -102,8 +102,6 @@ function HackatonDetails2() {
     return <h3>Cargando...</h3>;
   }
 
-  console.log(hackatonDetails.tech)
-
   return (
     <div key={hackatonDetails._id}>
       <h3>{hackatonDetails.title}</h3>
