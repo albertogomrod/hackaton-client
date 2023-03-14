@@ -6,6 +6,10 @@ import comunidadesAutonomas from "../../utils/comunidades";
 import nivel from "../../utils/nivel";
 import { uploadImageHackatonService } from "../../services/upload.services";
 
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"; // for Leaflet Component imports
+import ClickMarker from "../../components/ClickMarker";
+
+
 function HackatonCreate() {
   const navigate = useNavigate();
 
@@ -21,6 +25,10 @@ function HackatonCreate() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [isUploading, setIsUploading] = useState(false);
+
+  const [ center, setCenter ] = useState([51.505, -0.09]) // state used to define the center of the map on first render. [51.505, -0.09] is just an example.
+  const [clickedPosition, setClickedPosition] = useState(null);
+
 
   
 
@@ -182,6 +190,17 @@ function HackatonCreate() {
           ))}
         </select>
         <br />
+        <MapContainer center={center} zoom={13} scrollWheelZoom={false}>
+  <TileLayer
+    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+  />
+
+  {/* invoke Marker Componentes here */}
+  <ClickMarker setClickedPosition={setClickedPosition} />
+  { clickedPosition !== null && <Marker position={clickedPosition} /> }
+
+</MapContainer>;
 
         <button type="submit" onClick={handleStartCountdown}>Crear nuevo Hackaton</button>
       </form>

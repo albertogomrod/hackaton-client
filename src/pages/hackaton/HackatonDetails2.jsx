@@ -7,6 +7,7 @@ import {
   getHackatonByAssistService,
 } from "../../services/hackaton.services";
 import Modal from "../../components/Modal";
+import Tutoriales from "../../components/Tutoriales";
 
 function HackatonDetails2() {
   const navigate = useNavigate();
@@ -101,6 +102,8 @@ function HackatonDetails2() {
     return <h3>Cargando...</h3>;
   }
 
+  console.log(hackatonDetails.tech)
+
   return (
     <div key={hackatonDetails._id}>
       <h3>{hackatonDetails.title}</h3>
@@ -120,6 +123,7 @@ function HackatonDetails2() {
         onConfirm={handleConfirmModal}
         onCancel={handleCancelModal}
       />
+      <Tutoriales tech={hackatonDetails.tech} />
       <br />
     </div>
   )

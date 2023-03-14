@@ -32,7 +32,7 @@ function HomeTutorials() {
       <div style={{display: "flex", flexDirection: "row", gap: "20px", justifyContent: "center"}}>
       {allTutoriales.map((eachTutorial) => {
         return (
-          <img key={eachTutorial._id} src={eachTutorial.photo} alt="tutorial" />
+          <img key={eachTutorial._id} src={eachTutorial.image} alt="tutorial" width={150}/>
         )
       })}
       </div>

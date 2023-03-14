@@ -5,7 +5,8 @@ import {
   editProfileService,
 } from "../../services/profile.services";
 
-import tecnologias from "../../utils/tecnologias"
+import tecnologias from "../../utils/tecnologias";
+import comunidadesAutonomas from "../../utils/comunidades";
 
 function ProfileEdit() {
   const params = useParams();
@@ -95,12 +96,18 @@ function ProfileEdit() {
         <br />
 
         <label htmlFor="comunidadAutonoma">Comunidad Autónoma: </label>
-        <input
-          type="text"
+        <select
           name="comunidadAutonoma"
-          onChange={handleComunidadAutonomaChange}
           value={comunidadAutonoma}
-        />
+          onChange={handleComunidadAutonomaChange}
+        >
+          <option value="">-- Seleccione una comunidad --</option>
+          {comunidadesAutonomas.map((eachComunidadAutonoma) => (
+            <option value={eachComunidadAutonoma} key={eachComunidadAutonoma}>
+              {eachComunidadAutonoma}
+            </option>
+          ))}
+        </select>
         <br />
 
         <label htmlFor="tech">Tecnología: </label>

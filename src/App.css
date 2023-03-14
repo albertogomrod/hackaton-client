@@ -1,3 +1,9 @@
 .App {
   text-align: center;
 }
+
+/* this is the class used for a map container in leaflet. If not done, the map will have no size and be invisible */
+.leaflet-container {
+  height: 400px; /* example */
+  width: 400px; /* example */
+}

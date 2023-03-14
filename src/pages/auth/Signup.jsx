@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { signupService } from "../../services/auth.services";
 import comunidadesAutonomas from "../../utils/comunidades";
 import nivel from "../../utils/nivel";
+import tecnologias from "../../utils/tecnologias";
 
 
 function Signup() {
@@ -10,6 +11,7 @@ function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [comunidadAutonoma, setComunidadAutonoma] = useState("");
+  const [tech, setTech] = useState("");
   const [errorMessage, seterrorMessage] = useState("");
   const [level, setLevel] = useState("")
   const [role, setRole] = useState("normal")
@@ -20,6 +22,7 @@ function Signup() {
   const handleUsernameChange = (e) => setUsername(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleComunidadAutonomaChange = (e) => setComunidadAutonoma(e.target.value);
+  const handleTechChange = (e) => setTech(e.target.value);
   const handleLevelChange = (e) => setLevel(e.target.value);
   const handleRoleChange = (e) => setRole(e.target.value)
 
@@ -32,7 +35,8 @@ function Signup() {
       password,
       comunidadAutonoma,
       level,
-      role
+      role,
+      tech
     };
     try {
       await signupService(newUser);
@@ -92,6 +96,22 @@ function Signup() {
           {comunidadesAutonomas.map((eachComunidadAutonoma) => (
             <option value={eachComunidadAutonoma} key={eachComunidadAutonoma}>
               {eachComunidadAutonoma}
+            </option>
+          ))}
+        </select>
+
+        <br />
+
+        <label htmlFor="tech">¿Cuál es tu tecnología favorita?: </label>
+        <select
+          name="tech"
+          value={tech}
+          onChange={handleTechChange}
+        >
+          <option value="">-- Seleccione una tecnología --</option>
+          {tecnologias.map((eachTecnologia) => (
+            <option value={eachTecnologia} key={eachTecnologia}>
+              {eachTecnologia}
             </option>
           ))}
         </select>
