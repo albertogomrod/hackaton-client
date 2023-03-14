@@ -15,7 +15,7 @@ function HackatonDetails() {
   const [hackatonDetails, setHackatonDetails] = useState(null);
   const [hackatonsAssist, setHackatonsAssist] = useState(null);
   const [buttonState, setButtonState] = useState("Asistir");
-
+  
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
