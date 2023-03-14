@@ -3,13 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
-
 import { NavLink } from "react-router-dom";
+import HomeAsistencia from "../../components/HomeAsistencia";
 
 import {
   getProfileService,
   deleteProfileService,
 } from "../../services/profile.services";
+
 
 function Profile() {
   const navigate = useNavigate();
@@ -57,6 +58,13 @@ function Profile() {
           <p>Email: {profile.email}</p>
           <p>Tecnologías: {profile.tech}</p>
           <p>Comunidad Autónoma: {profile.comunidadAutonoma}</p>
+          <br />
+          <Link to={`/profile/edit`}>
+            <button>Editar perfil</button>
+          </Link>
+          <button onClick={handleDeleteProfile}>Borrar usuario</button>
+          <br />
+          <HomeAsistencia />
           {isCompany === true ? (
             <NavLink to="/profile/hackaton-list-company">
               Tus hackatones creados
@@ -65,11 +73,7 @@ function Profile() {
           {isAdmin === true ? (
             <NavLink to="/profile/tutorial-list-admin">Tus tutoriales creados</NavLink>
           ) : null}
-          <br />
-          <Link to={`/profile/edit`}>
-            <button>Editar perfil</button>
-          </Link>
-          <button onClick={handleDeleteProfile}>Borrar usuario</button>
+          
         </div>
       )}
     </div>

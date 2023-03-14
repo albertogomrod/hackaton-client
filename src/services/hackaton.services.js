@@ -28,6 +28,10 @@ const updateHackatonArrService = (hackatonId) => {
     return service.patch(`/hackaton/assist/${hackatonId}`)
 }
 
+const deleteHackatonArrService = (hackatonId) => {
+    return service.patch(`/hackaton/assist-delete/${hackatonId}`)
+}
+
 const getHackatonByAssistService = ()=>{
     return service.get("/hackaton/assist")
 }
@@ -40,5 +44,6 @@ export {
     deleteHackatonService,
     getHackatonByCityService,
     updateHackatonArrService,
+    deleteHackatonArrService,
     getHackatonByAssistService,
 }
