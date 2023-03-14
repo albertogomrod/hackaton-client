@@ -56,9 +56,9 @@ function Profile() {
         <div>
           <h4>Nombre de usuario: {profile.username}</h4>
           <p>Email: {profile.email}</p>
-          <p>Tecnologías: {profile.tech}</p>
+          <p>Tecnología: {profile.tech}</p>
           <p>Comunidad Autónoma: {profile.comunidadAutonoma}</p>
-          <br />
+          
           <Link to={`/profile/edit`}>
             <button>Editar perfil</button>
           </Link>

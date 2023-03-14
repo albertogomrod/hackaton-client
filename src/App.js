@@ -9,7 +9,8 @@ import Signup from "./pages/auth/Signup";
 import HackatonList from "./pages/hackaton/HackatonList";
 import TutorialList from "./pages/tutorial/TutorialList";
 
-import HackatonDetails from "./pages/hackaton/HackatonDetails";
+// import HackatonDetails from "./pages/hackaton/HackatonDetails";
+import HackatonDetails2 from "./pages/hackaton/HackatonDetails2";
 import HackatonEdit from "./pages/hackaton/HackatonEdit";
 import HackatonCreate from "./pages/hackaton/HackatonCreate";
 
@@ -46,7 +47,7 @@ function App() {
         <Route path= "/hackaton-list" element= {<HackatonList />} />
         <Route path= "/tutorial-list" element= {<TutorialList />} />
 
-        <Route path= "/hackaton/details/:hackatonId" element= {<HackatonDetails />}/>
+        <Route path= "/hackaton/details/:hackatonId" element= {<HackatonDetails2 />}/>
         <Route path= "/hackaton/edit/:hackatonId" element= {<IsCompany> <HackatonEdit /></IsCompany>}/>
         <Route path= "/hackaton/create" element= {<IsCompany> <HackatonCreate /> </IsCompany>}/>
 

@@ -5,6 +5,8 @@ import {
   editProfileService,
 } from "../../services/profile.services";
 
+import tecnologias from "../../utils/tecnologias"
+
 function ProfileEdit() {
   const params = useParams();
   const navigate = useNavigate();
@@ -101,13 +103,15 @@ function ProfileEdit() {
         />
         <br />
 
-        <label htmlFor="tech">Tecnologías: </label>
-        <input
-          type="text"
-          name="tech"
-          onChange={handleTechChange}
-          value={tech}
-        />
+        <label htmlFor="tech">Tecnología: </label>
+        <select name="tech" value={tech} onChange={handleTechChange}>
+          <option value="">-- Seleccione una tecnología --</option>
+          {tecnologias.map((eachTecnologia) => (
+            <option value={eachTecnologia} key={eachTecnologia}>
+              {eachTecnologia}
+            </option>
+          ))}
+        </select>
         <br />
 
         <button type="submit">Guardar cambios</button>
