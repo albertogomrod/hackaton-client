@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 import {
   getHackatonDetailsService,
   updateHackatonArrService,
@@ -35,30 +34,48 @@ function HackatonDetails() {
     }
   };
 
-  // if (hackatonsAssist !== null) {
-  //   const existe = hackatonsAssist.some(
-  //     (eachHackaton) => eachHackaton._id === hackatonId
-  //   );
-  //   setButtonState(existe ? "No asistir" : "Asistir");
-  // }
+  useEffect(() => {
+    if (!hackatonDetails || !hackatonsAssist) return;
+
+    const hackatonAssisted = hackatonsAssist.some(
+      (eachHackaton) => eachHackaton._id === hackatonId
+    );
+
+    if (hackatonAssisted) {
+      setButtonState("No asistir");
+    } else {
+      setButtonState("Asistir");
+    }
+  }, [hackatonDetails, hackatonsAssist]);
 
   const updateData = async () => {
     const existe = hackatonsAssist.some(
       (eachHackaton) => eachHackaton._id === hackatonId
     );
+    let confirmMessage = "";
+  
     if (existe === true) {
-      try {
-        await deleteHackatonArrService(hackatonId);
-        setButtonState("Asistir");
-      } catch (error) {
-        navigate("/error");
-      }
+      confirmMessage = "¿Seguro que quieres dejar de asistir a este hackaton?";
     } else {
-      try {
-        await updateHackatonArrService(hackatonId);
-        setButtonState("No asistir");
-      } catch (error) {
-        navigate("/error");
+      confirmMessage = "¿Seguro que quieres asistir a este hackaton?";
+    }
+  
+    const confirmed = window.confirm(confirmMessage);
+    if (confirmed) {
+      if (existe === true) {
+        try {
+          await deleteHackatonArrService(hackatonId);
+          setButtonState("Asistir");
+        } catch (error) {
+          navigate("/error");
+        }
+      } else {
+        try {
+          await updateHackatonArrService(hackatonId);
+          setButtonState("No asistir");
+        } catch (error) {
+          navigate("/error");
+        }
       }
     }
   };
