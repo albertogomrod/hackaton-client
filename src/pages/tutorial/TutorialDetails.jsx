@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { getTutorialDetailsService, deleteTutorialService } from "../../services/tutorial.services.js"
+import {
+  getTutorialDetailsService,
+  deleteTutorialService,
+} from "../../services/tutorial.services.js";
+import Player from "react-player";
 
 function TutorialDetails() {
-
   const navigate = useNavigate();
   const params = useParams();
-  console.log(params)
+  console.log(params);
 
   const [tutorialDetails, setTutorialDetails] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
@@ -29,16 +32,23 @@ function TutorialDetails() {
   if (isFetching === true) {
     return <h3>Cargando...</h3>;
   }
-  
+
   return (
     <div key={tutorialDetails._id}>
       <h3>{tutorialDetails.title}</h3>
       <button onClick={() => navigate(-1)}>← Back</button>
       <br />
-      <img src={tutorialDetails.image} alt="portadaTutorial" />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Player
+          url={tutorialDetails.videoUrl}
+          width={480}
+          height={270}
+          controls={false}
+          light={true}
+        />
+      </div>
       <br />
       <p>{tutorialDetails.description}</p>
-      <p>Links {tutorialDetails.links}</p>
       <p>Tecnologías: {tutorialDetails.tech}</p>
       <br />
     </div>

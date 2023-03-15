@@ -22,7 +22,7 @@ function Navbar() {
         <NavLink to="/profile">Mi perfil</NavLink>
         <NavLink to="/hackaton-list">Próximos hackatones</NavLink>
         <NavLink to="/tutorial-list">Tutoriales</NavLink>
-        <NavLink to="/">Mapa</NavLink>
+        <NavLink to="/hackaton/map">Mapa</NavLink>
         <NavLink to="/">Calendario</NavLink>
         { isCompany === true ? <NavLink to="/hackaton/create">Crear un hackaton</NavLink> : null}
         { isAdmin === true ? <NavLink to="/tutorial/create">Crear un tutorial</NavLink> : null}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { getAllTutorialsService } from "../../services/tutorial.services.js";
+import Player from "react-player";
 
 function TutorialList() {
   const navigate = useNavigate();
@@ -40,12 +41,22 @@ function TutorialList() {
           <div key={eachTutorial._id}>
             <h2>{eachTutorial.title}</h2>
             <br />
-            <img src={eachTutorial.image} alt="portada-tutorial" />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Link to={`/tutorial/details/${eachTutorial._id}`}>
+                <Player
+                  url={eachTutorial.videoUrl}
+                  width={480}
+                  height={270}
+                  controls={false}
+                  light={true}
+                />
+              </Link>
+            </div>
             <br />
             <h6>{eachTutorial.description}</h6>
             <p>Tecnologías: {eachTutorial.tech}</p>
             <Link to={`/tutorial/details/${eachTutorial._id}`}>
-              Más información
+              Ver tutorial
             </Link>
           </div>
         );

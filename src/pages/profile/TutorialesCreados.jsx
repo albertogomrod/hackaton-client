@@ -44,7 +44,7 @@ function TutorialesCreados() {
   return (
     <div>
       <h3>Tutoriales creados por ti</h3>
-
+      <button onClick={() => navigate(-1)}>← Back</button>
       {tutorials.map((eachTutorial) => {
         return (
           <div key={eachTutorial._id}>

@@ -14,6 +14,8 @@ import HackatonDetails2 from "./pages/hackaton/HackatonDetails2";
 import HackatonEdit from "./pages/hackaton/HackatonEdit";
 import HackatonCreate from "./pages/hackaton/HackatonCreate";
 
+import Mapa from "./pages/Mapa"
+
 import TutorialDetails from "./pages/tutorial/TutorialDetails";
 import TutorialEdit from "./pages/tutorial/TutorialEdit";
 import TutorialCreate from "./pages/tutorial/TutorialCreate";
@@ -30,6 +32,7 @@ import NotFound from './pages/NotFound';
 import Navbar from "./components/Navbar";
 import IsAdmin from "./components/IsAdmin"
 import IsCompany from "./components/IsCompany"
+import Footer from './components/Footer';
 
 
 
@@ -51,6 +54,8 @@ function App() {
         <Route path= "/hackaton/edit/:hackatonId" element= {<IsCompany> <HackatonEdit /></IsCompany>}/>
         <Route path= "/hackaton/create" element= {<IsCompany> <HackatonCreate /> </IsCompany>}/>
 
+        <Route path= "/hackaton/map" element= {<Mapa />}/>
+
         <Route path= "/tutorial/details/:tutorialId" element= {<TutorialDetails />}/>
         <Route path= "/tutorial/edit/:tutorialId" element= {<IsAdmin> <TutorialEdit /> </IsAdmin>}/>
         <Route path= "/tutorial/create" element= {<IsAdmin> <TutorialCreate /> </IsAdmin> } /> 
@@ -66,6 +71,8 @@ function App() {
         <Route path="*" element={<NotFound />} />
 
       </Routes>
+
+      <Footer />
     </div>
   );
 }

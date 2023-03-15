@@ -4,9 +4,9 @@ import {
   getProfileService,
   editProfileService,
 } from "../../services/profile.services";
-
 import tecnologias from "../../utils/tecnologias";
 import comunidadesAutonomas from "../../utils/comunidades";
+import Modal from "../../components/Modal";
 
 function ProfileEdit() {
   const params = useParams();
@@ -17,6 +17,8 @@ function ProfileEdit() {
   const [password, setPassword] = useState("");
   const [comunidadAutonoma, setComunidadAutonoma] = useState("");
   const [tech, setTech] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   const handleUsernameChange = (event) => setUsername(event.target.value);
   const handleEmailChange = (event) => setEmail(event.target.value);
@@ -44,31 +46,39 @@ function ProfileEdit() {
     }
   };
 
-  const handleSubmit = async (event) => {
+  const handleShowModal = (event) => {
     event.preventDefault();
+    setShowModal(true);
+    setModalMessage("¿Guardar cambios?");
+  };
 
+  const handleConfirmModal = async (event) => {
+    event.preventDefault();
     try {
       const updatedProfile = {
-        username: username,
-        email: email,
-        password: password,
-        comunidadAutonoma: comunidadAutonoma,
-        tech: tech,
+        username,
+        email,
+        password,
+        comunidadAutonoma,
+        tech
       };
-
       await editProfileService(updatedProfile);
-
+      setShowModal(false);
       navigate("/profile");
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleCancelModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div>
       <h3>Editar perfil de usuario</h3>
-
-      <form onSubmit={handleSubmit}>
+      <button onClick={() => navigate(-1)}>← Back</button>
+      <form>
         <label htmlFor="username">Nombre de usuario: </label>
         <input
           type="text"
@@ -121,7 +131,15 @@ function ProfileEdit() {
         </select>
         <br />
 
-        <button type="submit">Guardar cambios</button>
+        <button type="submit" onClick={handleShowModal}>
+          Guardar cambios
+        </button>
+        <Modal
+          show={showModal}
+          message={modalMessage}
+          onConfirm={handleConfirmModal}
+          onCancel={handleCancelModal}
+        />
       </form>
     </div>
   );

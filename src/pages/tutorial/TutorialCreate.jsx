@@ -2,21 +2,18 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTutorialService } from "../../services/tutorial.services";
 import tecnologias from "../../utils/tecnologias";
-import { uploadImageTutorialService } from "../../services/upload.services";
+import Player from 'react-player';
 
 function TutorialCreate() {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
-  const [links, setLinks] = useState("");
+  const [videoUrl, setVideoUrl] = useState('');
   const [tech, setTech] = useState("");
   const [isCreated, setIsCreated] = useState(false);
   const [countDown, setCountDown] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
-
-  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     if (isCreated === false && countDown === 0) return;
@@ -35,39 +32,17 @@ function TutorialCreate() {
 
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
-  const handleLinksChange = (e) => setLinks(e.target.value);
+  const handleLinksChange = (e) => setVideoUrl(e.target.value);
   const handleTechChange = (e) => setTech(e.target.value);
-
-  const handleFileUpload = async (event) => {
-    if (!event.target.files[0]) {
-      return;
-    }
-
-    setIsUploading(true);
-
-    const uploadData = new FormData();
-    uploadData.append("image", event.target.files[0]);
-
-    try {
-      const response = await uploadImageTutorialService(uploadData);
-      setImageUrl(response.data.imageUrl);
-      console.log(imageUrl);
-
-      setIsUploading(false);
-    } catch (error) {
-      navigate("/error");
-    }
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const newTutorial = {
-        title: title,
-        image: imageUrl,
-        description: description,
-        links: links,
-        tech: tech,
+        title,
+        description,
+        videoUrl,
+        tech,
       };
       await createTutorialService(newTutorial);
       setIsCreated(true)
@@ -83,6 +58,7 @@ function TutorialCreate() {
   return (
     <div>
       <h3>Crear Tutorial</h3>
+      <button onClick={() => navigate(-1)}>← Back</button>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Título: </label>
         <input
@@ -100,32 +76,24 @@ function TutorialCreate() {
           value={description}
         />
         <br />
-        <label>Image: </label>
-        <input
-          type="file"
-          name="image"
-          onChange={handleFileUpload}
-          disabled={isUploading}
-        />
-        {/* below disabled prevents the user from attempting another upload while one is already happening */}
-
-        {/* to render a loading message or spinner while uploading the picture */}
-        {isUploading ? <h3>... uploading image</h3> : null}
-
-        {/* below line will render a preview of the image from cloudinary */}
-        {imageUrl ? (
-          <div>
-            <img src={imageUrl} alt="img" width={200} />
-          </div>
-        ) : null}
-        <br />
-        <label htmlFor="links">Links: </label>
+  
+        <label htmlFor="links">URL: </label>
         <input
           type="text"
           name="links"
           onChange={handleLinksChange}
-          value={links}
+          value={videoUrl}
         />
+        {videoUrl && (
+        <div style={{display: "flex", justifyContent: "center"}}>
+        <Player
+          url={videoUrl}
+          width={480}
+          height={270}
+          controls={true}
+        />
+        </div> 
+      )}
         <br />
         <label htmlFor="tech">Tecnologías </label>
         <select name="tech" value={tech} onChange={handleTechChange}>

@@ -1,9 +1,19 @@
 .App {
   text-align: center;
+  margin-bottom: 150px;
 }
 
 /* this is the class used for a map container in leaflet. If not done, the map will have no size and be invisible */
 .leaflet-container {
   height: 400px; /* example */
   width: 400px; /* example */
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

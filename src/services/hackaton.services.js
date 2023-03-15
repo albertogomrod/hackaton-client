@@ -36,6 +36,10 @@ const getHackatonByAssistService = ()=>{
     return service.get("/hackaton/assist")
 }
 
+const getHackatonByMap= ()=>{
+    return service.get("hackaton/map")
+}
+
 export {
     getAllHackatonsService,
     getHackatonDetailsService,
@@ -46,4 +50,5 @@ export {
     updateHackatonArrService,
     deleteHackatonArrService,
     getHackatonByAssistService,
+    getHackatonByMap,
 }

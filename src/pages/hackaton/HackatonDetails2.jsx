@@ -9,6 +9,9 @@ import {
 import Modal from "../../components/Modal";
 import Tutoriales from "../../components/Tutoriales";
 
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"; // for Leaflet Component imports
+
+
 function HackatonDetails2() {
   const navigate = useNavigate();
   const params = useParams();
@@ -17,6 +20,9 @@ function HackatonDetails2() {
   const [hackatonDetails, setHackatonDetails] = useState(null);
   const [hackatonsAssist, setHackatonsAssist] = useState(null);
   const [buttonState, setButtonState] = useState("Asistir");
+
+  const [ center, setCenter ] = useState([40.463667, -3.74922])
+
 
   const [isFetching, setIsFetching] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -70,7 +76,7 @@ function HackatonDetails2() {
     const existe = hackatonsAssist.some(
       (eachHackaton) => eachHackaton._id === hackatonId
     );
-  
+
     if (existe) {
       try {
         await deleteHackatonArrService(hackatonId);
@@ -107,14 +113,32 @@ function HackatonDetails2() {
       <h3>{hackatonDetails.title}</h3>
       <button onClick={() => navigate(-1)}>← Back</button>
       <br />
-      <img src={hackatonDetails.photo} alt="portadaHackaton" width= "450px" />
+      <img src={hackatonDetails.photo} alt="portadaHackaton" width={450} />
       <br />
       <h6>{hackatonDetails.date}</h6>
       <h6>{hackatonDetails.comunidadAutonoma}</h6>
       <p>{hackatonDetails.description}</p>
       <p>Nivel: {hackatonDetails.level}</p>
       <p>Tecnologías: {hackatonDetails.tech}</p>
-      <button onClick={handleUpdateData}>{buttonState}</button>
+
+      <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+
+        {/* invoke Marker Componentes here */}
+        <Marker position={hackatonDetails.coordinates}>
+        <Popup>
+          {/* Example of the rest of the document data*/}
+          <p>{hackatonDetails.title}</p>
+          <p>{hackatonDetails.date}</p>
+        </Popup>
+      </Marker>
+      </MapContainer>
+
+
+      ;<button onClick={handleUpdateData}>{buttonState}</button>
       <Modal
         show={showModal}
         message={modalMessage}
@@ -124,7 +148,7 @@ function HackatonDetails2() {
       <Tutoriales tech={hackatonDetails.tech} />
       <br />
     </div>
-  )
-  }
+  );
+}
 
 export default HackatonDetails2;

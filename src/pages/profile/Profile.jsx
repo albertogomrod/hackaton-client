@@ -5,12 +5,12 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { NavLink } from "react-router-dom";
 import HomeAsistencia from "../../components/HomeAsistencia";
+import Modal from "../../components/Modal";
 
 import {
   getProfileService,
   deleteProfileService,
 } from "../../services/profile.services";
-
 
 function Profile() {
   const navigate = useNavigate();
@@ -20,6 +20,8 @@ function Profile() {
 
   const [profile, setProfile] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   useEffect(() => {
     getData();
@@ -35,15 +37,25 @@ function Profile() {
     }
   };
 
-  const handleDeleteProfile = async () => {
+  const handleShowModal = () => {
+    setShowModal(true);
+    setModalMessage("¿Seguro que quieres eliminar de forma permanente tu cuenta?");
+  };
+
+  const handleConfirmModal = async () => {
     try {
       await deleteProfileService(params._id);
       localStorage.removeItem("authToken");
       authenticateUser();
       navigate("/");
+      setShowModal(false);
     } catch (error) {
-      console.log(error);
+      navigate("/error");
     }
+  };
+
+  const handleCancelModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -58,11 +70,17 @@ function Profile() {
           <p>Email: {profile.email}</p>
           <p>Tecnología: {profile.tech}</p>
           <p>Comunidad Autónoma: {profile.comunidadAutonoma}</p>
-          
+
           <Link to={`/profile/edit`}>
             <button>Editar perfil</button>
           </Link>
-          <button onClick={handleDeleteProfile}>Borrar usuario</button>
+          <button onClick={handleShowModal}>Borrar usuario</button>
+          <Modal
+            show={showModal}
+            message={modalMessage}
+            onConfirm={handleConfirmModal}
+            onCancel={handleCancelModal}
+          />
           <br />
           <HomeAsistencia />
           {isCompany === true ? (
@@ -71,9 +89,10 @@ function Profile() {
             </NavLink>
           ) : null}
           {isAdmin === true ? (
-            <NavLink to="/profile/tutorial-list-admin">Tus tutoriales creados</NavLink>
+            <NavLink to="/profile/tutorial-list-admin">
+              Tus tutoriales creados
+            </NavLink>
           ) : null}
-          
         </div>
       )}
     </div>
