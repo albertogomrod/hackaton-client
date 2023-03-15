@@ -38,15 +38,18 @@ function TutorialList() {
       ) : null}
       {allTutorials.map((eachTutorial) => {
         return (
-          <div key={eachTutorial._id}>
+          <div
+            key={eachTutorial._id}
+            style={{ textAlign: "center", fontSize: "1.5rem", paddingBottom: "30px" }}
+          >
             <h2>{eachTutorial.title}</h2>
             <br />
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Link to={`/tutorial/details/${eachTutorial._id}`}>
                 <Player
                   url={eachTutorial.videoUrl}
-                  width={480}
-                  height={270}
+                  width={"50vw"}
+                  height={"50vh"}
                   controls={false}
                   light={true}
                 />
@@ -55,7 +58,7 @@ function TutorialList() {
             <br />
             <h6>{eachTutorial.description}</h6>
             <p>Tecnologías: {eachTutorial.tech}</p>
-            <Link to={`/tutorial/details/${eachTutorial._id}`}>
+            <Link to={`/tutorial/details/${eachTutorial._id}`} style={{textDecoration: "none", color: "white", border: "3px solid white", borderRadius: "5px", padding: "10px"}} >
               Ver tutorial
             </Link>
           </div>

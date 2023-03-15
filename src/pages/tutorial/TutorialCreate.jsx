@@ -58,7 +58,7 @@ function TutorialCreate() {
   return (
     <div>
       <h3>Crear Tutorial</h3>
-      <button onClick={() => navigate(-1)}>← Back</button>
+      <button onClick={() => navigate(-1)}>Atrás</button>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Título: </label>
         <input

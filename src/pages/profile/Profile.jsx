@@ -6,7 +6,6 @@ import { AuthContext } from "../../context/auth.context";
 import { NavLink } from "react-router-dom";
 import HomeAsistencia from "../../components/HomeAsistencia";
 import Modal from "../../components/Modal";
-
 import {
   getProfileService,
   deleteProfileService,
@@ -39,7 +38,9 @@ function Profile() {
 
   const handleShowModal = () => {
     setShowModal(true);
-    setModalMessage("¿Seguro que quieres eliminar de forma permanente tu cuenta?");
+    setModalMessage(
+      "¿Seguro que quieres eliminar de forma permanente tu cuenta?"
+    );
   };
 
   const handleConfirmModal = async () => {

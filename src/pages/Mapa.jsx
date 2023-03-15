@@ -34,7 +34,9 @@ function Mapa() {
   }
 
   return (
-    <div>
+    <div class="mapa">
+    <h3>Mapa</h3>
+    <h6>Encuentra en este plano los mejores hackatones que se celebrarán proximamente.</h6>
       <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -56,6 +58,7 @@ function Mapa() {
         })}
       </MapContainer>
       ;
+      <Link to="/hackaton-list">Más información acerca de estos hackatones</Link>
     </div>
   );
 }

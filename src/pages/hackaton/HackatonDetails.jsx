@@ -87,7 +87,7 @@ function HackatonDetails() {
   return (
     <div key={hackatonDetails._id}>
       <h3>{hackatonDetails.title}</h3>
-      <button onClick={() => navigate(-1)}>← Back</button>
+      <button onClick={() => navigate(-1)}>Atrás</button>
       <br />
       <img src={hackatonDetails.photo} alt="portadaHackaton" width={100}/>
       <br />

@@ -11,7 +11,6 @@ import Tutoriales from "../../components/Tutoriales";
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"; // for Leaflet Component imports
 
-
 function HackatonDetails2() {
   const navigate = useNavigate();
   const params = useParams();
@@ -21,8 +20,7 @@ function HackatonDetails2() {
   const [hackatonsAssist, setHackatonsAssist] = useState(null);
   const [buttonState, setButtonState] = useState("Asistir");
 
-  const [ center, setCenter ] = useState([40.463667, -3.74922])
-
+  const [center, setCenter] = useState([40.463667, -3.74922]);
 
   const [isFetching, setIsFetching] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -109,9 +107,9 @@ function HackatonDetails2() {
   }
 
   return (
-    <div key={hackatonDetails._id}>
+    <div class="hackaton-details" key={hackatonDetails._id}>
       <h3>{hackatonDetails.title}</h3>
-      <button onClick={() => navigate(-1)}>← Back</button>
+      <button onClick={() => navigate(-1)}>Atrás</button>
       <br />
       <img src={hackatonDetails.photo} alt="portadaHackaton" width={450} />
       <br />
@@ -129,16 +127,16 @@ function HackatonDetails2() {
 
         {/* invoke Marker Componentes here */}
         <Marker position={hackatonDetails.coordinates}>
-        <Popup>
-          {/* Example of the rest of the document data*/}
-          <p>{hackatonDetails.title}</p>
-          <p>{hackatonDetails.date}</p>
-        </Popup>
-      </Marker>
+          <Popup>
+            {/* Example of the rest of the document data*/}
+            <p>{hackatonDetails.title}</p>
+            <p>{hackatonDetails.date}</p>
+          </Popup>
+        </Marker>
       </MapContainer>
 
-
-      ;<button onClick={handleUpdateData}>{buttonState}</button>
+      <br />
+      <button onClick={handleUpdateData}>{buttonState}</button>
       <Modal
         show={showModal}
         message={modalMessage}

@@ -1,46 +1,65 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllTutorialsService } from "../services/tutorial.services.js";
+import Player from "react-player";
 
 function HomeTutorials() {
+  const [allTutoriales, setAllTutoriales] = useState(null);
+  const [isFetching, setIsFetching] = useState(true);
 
-    const [allTutoriales, setAllTutoriales] = useState(null)
-    const [isFetching, setIsFetching] = useState(true);
+  useEffect(() => {
+    getData();
+  }, []);
 
-    useEffect(() => {
-        getData();
-      }, []);
+  const getData = async () => {
+    setIsFetching(true);
+    try {
+      const response = await getAllTutorialsService();
+      setIsFetching(false);
+      setAllTutoriales(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-      const getData = async () => {
-        setIsFetching(true);
-        try {
-          const response = await getAllTutorialsService()
-          setIsFetching(false);
-          setAllTutoriales(response.data)
-        } catch (error) {
-          console.log(error);
-        }
-      };
-    
-      if (isFetching === true) {
-        return <h3>Cargando...</h3>;
-      }
+  if (isFetching === true) {
+    return <h3>Cargando...</h3>;
+  }
 
   return (
-<div>
+    <div>
       <h3>Tutoriales</h3>
-      <div style={{display: "flex", flexDirection: "row", gap: "20px", justifyContent: "center"}}>
-      {allTutoriales.map((eachTutorial) => {
-        return (
-          <img key={eachTutorial._id} src={eachTutorial.image} alt="tutorial" width={150}/>
-        )
-      })}
+      <div style={{ overflowX: "auto", scrollBehavior: "smooth" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "20px",
+            justifyContent: "center",
+          }}
+        >
+          {allTutoriales.map((eachTutorial) => {
+            return (
+              <Link to={`/tutorial/details/${eachTutorial._id}`}>
+                <Player
+                  url={eachTutorial.videoUrl}
+                  width={150}
+                  height={85}
+                  controls={false}
+                  light={true}
+                />
+              </Link>
+            );
+          })}
+        </div>
+        {allTutoriales.length === 0 ? (
+          <h5>Todavía no hay tutoriales disponibles</h5>
+        ) : (
+          <Link to="/tutorial-list">Ver todos los tutoriales</Link>
+        )}
       </div>
-      {allTutoriales.length === 0 ? (
-        <h5>Todavía no hay tutoriales disponibles</h5>
-      ) : <Link to="/tutorial-list">Ver todos los tutoriales</Link>}
     </div>
-  )
+  );
 }
 
-export default HomeTutorials
+export default HomeTutorials;

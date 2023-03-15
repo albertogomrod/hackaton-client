@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
+import 'bootstrap/dist/css/bootstrap.css';
 
 // Pages
 import Home from "./pages/Home";
@@ -9,7 +10,6 @@ import Signup from "./pages/auth/Signup";
 import HackatonList from "./pages/hackaton/HackatonList";
 import TutorialList from "./pages/tutorial/TutorialList";
 
-// import HackatonDetails from "./pages/hackaton/HackatonDetails";
 import HackatonDetails2 from "./pages/hackaton/HackatonDetails2";
 import HackatonEdit from "./pages/hackaton/HackatonEdit";
 import HackatonCreate from "./pages/hackaton/HackatonCreate";

@@ -77,7 +77,7 @@ function ProfileEdit() {
   return (
     <div>
       <h3>Editar perfil de usuario</h3>
-      <button onClick={() => navigate(-1)}>← Back</button>
+      <button onClick={() => navigate(-1)}>Atrás</button>
       <form>
         <label htmlFor="username">Nombre de usuario: </label>
         <input

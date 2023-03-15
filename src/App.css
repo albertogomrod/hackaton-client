@@ -1,7 +1,35 @@
+body {
+}
+
 .App {
   text-align: center;
   margin-bottom: 150px;
+  background-color: #ffc3a1;
+  color: #8d5252;
+  height: 100vh;
+  width: 100%;
 }
+
+
+.navbarr {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+  background-color: #a75d5d;
+  color: white;
+}
+.navlink {
+  text-decoration: none;
+  color: white;
+}
+
+.navlink:hover {
+  color: #ffc3a1;
+}
+
 
 /* this is the class used for a map container in leaflet. If not done, the map will have no size and be invisible */
 .leaflet-container {
@@ -9,8 +37,30 @@
   width: 400px; /* example */
 }
 
+.mapa-create {
+  padding-top: 5px;
+}
+
+.mapa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hackaton-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-hackaton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .footer {
-  background-color: #333;
+  background-color: #a75d5d;
   color: #fff;
   padding: 20px;
   position: fixed;

@@ -103,9 +103,10 @@ function HackatonCreate() {
   };
 
   return (
-    <div>
+    <div class="create-hackaton">
       <h3>Crear un Hackaton</h3>
-      <button onClick={() => navigate(-1)}>← Back</button>
+      <button onClick={() => navigate(-1)}>Atrás</button>
+      <br />
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Título: </label>
         <input
@@ -183,24 +184,31 @@ function HackatonCreate() {
         </select>
         <br />
 
-        <label htmlFor="clickedPosition">Ubicación evento: </label>
+        <label htmlFor="clickedPosition">Coordenadas: </label>
         <input
           type="text"
           name="clickedPositions"
           onChange={handleMapChange}
           value={clickedPosition}
         />
-        <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
+        <br />
 
-          {/* invoke Marker Componentes here */}
-          <ClickMarker setClickedPosition={setClickedPosition} />
-          {clickedPosition !== null && <Marker position={clickedPosition} />}
-        </MapContainer>
-        ;
+        <p><em>¡Pincha en el mapa para obtenertener las coordenadas exactas!</em></p>
+
+        <div class= "mapa-create">
+          <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+
+            {/* invoke Marker Componentes here */}
+            <ClickMarker setClickedPosition={setClickedPosition} />
+            {clickedPosition !== null && <Marker position={clickedPosition} />}
+          </MapContainer>
+        </div>
+
+        <br />
         <button type="submit" onClick={handleStartCountdown}>
           Crear nuevo Hackaton
         </button>

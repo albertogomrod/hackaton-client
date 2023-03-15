@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getTutorialByProfile } from "../../services/profile.services";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { deleteTutorialService } from "../../services/tutorial.services";
+import Player from "react-player";
 
 function TutorialesCreados() {
   const navigate = useNavigate();
@@ -44,26 +45,29 @@ function TutorialesCreados() {
   return (
     <div>
       <h3>Tutoriales creados por ti</h3>
-      <button onClick={() => navigate(-1)}>← Back</button>
+      <button onClick={() => navigate(-1)}>Atrás</button>
       {tutorials.map((eachTutorial) => {
         return (
           <div key={eachTutorial._id}>
-            <h4>{eachTutorial.title}</h4>
-            <img src={eachTutorial.photo} alt="" />
-            <p>{eachTutorial.description}</p>
-            <button>
-              <Link to={`/tutorial/edit/${eachTutorial._id}`}>
-                Editar Tutorial
+            <h2>{eachTutorial.title}</h2>
+            <br />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Link to={`/tutorial/details/${eachTutorial._id}`}>
+                <Player
+                  url={eachTutorial.videoUrl}
+                  width={480}
+                  height={270}
+                  controls={false}
+                  light={true}
+                />
               </Link>
-            </button>
-            <button
-              onClick={() => {
-                handleDeleteTutorial(eachTutorial._id);
-              }}
-            >
-              {" "}
-              Borrar
-            </button>
+            </div>
+            <br />
+            <h6>{eachTutorial.description}</h6>
+            <p>Tecnologías: {eachTutorial.tech}</p>
+            <Link to={`/tutorial/details/${eachTutorial._id}`}>
+              Ver tutorial
+            </Link>
           </div>
         );
       })}

@@ -36,15 +36,14 @@ function TutorialDetails() {
   return (
     <div key={tutorialDetails._id}>
       <h3>{tutorialDetails.title}</h3>
-      <button onClick={() => navigate(-1)}>← Back</button>
+      <button onClick={() => navigate(-1)}>Atrás</button>
       <br />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Player
           url={tutorialDetails.videoUrl}
           width={480}
           height={270}
-          controls={false}
-          light={true}
+          controls={true}
         />
       </div>
       <br />
