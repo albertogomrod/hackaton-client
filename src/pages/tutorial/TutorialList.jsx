@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { getAllTutorialsService } from "../../services/tutorial.services.js";
-import Player from "react-player";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 function TutorialList() {
   const navigate = useNavigate();
@@ -55,18 +54,7 @@ function TutorialList() {
               <Col>
                 <Card>
                   <Card.Body className= "cardBody">
-                    <div style={{display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "20px"}}>
-                      <Link to={`/tutorial/details/${eachTutorial._id}`}>
-                        <Player
-                          url={eachTutorial.videoUrl}
-                          width={"50vw"}
-                          height={"60vh"}
-                          controls={false}
-                          light={true}
-                        />
-                      </Link>
-                    </div>
-                    <Card.Title className= "cardText">{eachTutorial.title}</Card.Title>
+                    <Card.Title style={{fontSize: "2rem"}} className= "cardText">{eachTutorial.title}</Card.Title>
                     <Card.Text className= "cardText">
                       <p>{eachTutorial.description}</p>
                       <p>Tecnologías: {eachTutorial.tech}</p>
