@@ -1,4 +1,4 @@
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import "../App.css";
@@ -10,8 +10,7 @@ import Container from "react-bootstrap/Container";
 function NavBar() {
   const navigate = useNavigate();
 
-  const { isLoggedIn, authenticateUser, isAdmin, isCompany } =
-    useContext(AuthContext);
+  const { isLoggedIn, authenticateUser, isCompany, isAdmin } = useContext(AuthContext);
 
   // LOGOUT
   const handleLogout = () => {
@@ -44,18 +43,18 @@ function NavBar() {
                   Crear un hackaton
                 </NavLink>
               ) : null}
-              {isAdmin === true ? (
-                <NavLink className="navlink" to="/tutorial/create">
-                  Crear un tutorial
-                </NavLink>
-              ) : null}
+              {isAdmin && (
+              <NavLink className="nav-link" to="/tutorial/create">
+                Crear un tutorial
+              </NavLink>
+            )}
             </Nav>
             <Nav>
               <NavLink className="navlink" to="/profile">
                 Mi perfil
               </NavLink>
               <NavLink id="logout" onClick={handleLogout}>
-                Cerrar sesion
+                Cerrar sesión
               </NavLink>
             </Nav>
           </Navbar.Collapse>
@@ -64,23 +63,24 @@ function NavBar() {
     );
   } else {
     return (
-      <div className="navbarr">
-        <NavLink to="/">
-          <img class="logo" src={logoblanco} alt="logo-hackaton" />{" "}
-        </NavLink>
-        <div className="menu-items">
-          <div className="menu menu-right">
-            <span className="badge"></span>
-
-            <NavLink className="navlink" to="/signup">
-              Regístro
-            </NavLink>
-            <NavLink className="navlink" to="/login">
-              Login
-            </NavLink>
-          </div>
-        </div>
-      </div>
+      <Navbar bg="dark" variant="dark" expand="md">
+        <Container>
+          <Navbar.Brand href="/">
+            <img class="logo" src={logoblanco} alt="logo-hackaton" />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav>
+              <NavLink className="navlink" to="/login">
+                Iniciar sesión
+              </NavLink>
+              <NavLink className="navlink" to="/signup">
+                Registrarse
+              </NavLink>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     );
   }
 }
