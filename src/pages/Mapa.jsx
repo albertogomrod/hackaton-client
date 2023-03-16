@@ -4,6 +4,7 @@ import { getAllHackatonsService } from "../services/hackaton.services";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
+import { SpinnerDotted } from 'spinners-react';
 
 function Mapa() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ function Mapa() {
   };
 
   if (isFetching === true) {
-    return <h3>Cargando...</h3>;
+    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
   }
 
   return (
@@ -40,7 +41,7 @@ function Mapa() {
     <h6>Explora en este mapa los lugares en los que se celebrarán Hackathones proximamente.</h6>
     <br />
     <p>Haz click sobre ellos para saber más detalles.</p>
-      <MapContainer id="mapaTamaño" center={center} zoom={5} scrollWheelZoom={false}>
+      <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -3,6 +3,7 @@ import { getTutorialByProfile } from "../../services/profile.services";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { deleteTutorialService } from "../../services/tutorial.services";
 import Player from "react-player";
+import { SpinnerDotted } from 'spinners-react';
 
 function TutorialesCreados() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ function TutorialesCreados() {
   };
 
   if (isFetching === true) {
-    return <h3>Cargando...</h3>;
+    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
   }
 
   return (

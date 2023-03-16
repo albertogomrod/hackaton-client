@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { verifyService } from "../services/auth.services";
+import { SpinnerDotted } from 'spinners-react';
 
 const AuthContext = createContext();
 
@@ -52,7 +53,7 @@ function AuthWrapper(props) {
   if (isFetching === true) {
     return (
       <div className="App">
-        <h2>Cargando...</h2>
+        <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />
       </div>
     );
   }

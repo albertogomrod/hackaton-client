@@ -9,6 +9,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Card, Button } from "react-bootstrap";
+import { SpinnerDotted } from 'spinners-react';
 
 function HackatonList() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ function HackatonList() {
   };
 
   if (isFetching === true) {
-    return <h3>Cargando...</h3>;
+    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
   }
 
   return (

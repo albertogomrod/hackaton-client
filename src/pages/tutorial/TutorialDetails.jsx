@@ -6,6 +6,7 @@ import {
   deleteTutorialService,
 } from "../../services/tutorial.services.js";
 import Player from "react-player";
+import { SpinnerDotted } from 'spinners-react';
 
 function TutorialDetails() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ function TutorialDetails() {
     }
   };
   if (isFetching === true) {
-    return <h3>Cargando...</h3>;
+    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
   }
 
   return (

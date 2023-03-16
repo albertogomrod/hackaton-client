@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllTutorialsService } from "../services/tutorial.services.js";
 import Player from "react-player";
+import { SpinnerDotted } from 'spinners-react';
 
 function HomeTutorials() {
   const [allTutoriales, setAllTutoriales] = useState(null);
@@ -23,7 +24,7 @@ function HomeTutorials() {
   };
 
   if (isFetching === true) {
-    return <h3>Cargando...</h3>;
+    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
   }
 
   return (

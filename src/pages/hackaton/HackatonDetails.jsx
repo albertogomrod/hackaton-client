@@ -6,11 +6,13 @@ import {
   deleteHackatonArrService,
   getHackatonByAssistService,
 } from "../../services/hackaton.services";
+import { SpinnerDotted } from 'spinners-react';
 
 function HackatonDetails() {
   const navigate = useNavigate();
   const params = useParams();
   const { hackatonId } = params;
+  
 
   const [hackatonDetails, setHackatonDetails] = useState(null);
   const [hackatonsAssist, setHackatonsAssist] = useState(null);
@@ -81,7 +83,7 @@ function HackatonDetails() {
   };
 
   if (isFetching === true) {
-    return <h3>Cargando...</h3>;
+    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
   }
 
   return (

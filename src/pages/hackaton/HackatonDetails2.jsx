@@ -8,6 +8,7 @@ import {
 } from "../../services/hackaton.services";
 import Modal from "../../components/Modal";
 import Tutoriales from "../../components/Tutoriales";
+import { SpinnerDotted } from 'spinners-react';
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"; // for Leaflet Component imports
 
@@ -103,7 +104,7 @@ function HackatonDetails2() {
   };
 
   if (isFetching) {
-    return <h3>Cargando...</h3>;
+    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
   }
 
   return (

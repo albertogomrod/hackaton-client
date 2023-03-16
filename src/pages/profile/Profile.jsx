@@ -10,6 +10,7 @@ import {
   getProfileService,
   deleteProfileService,
 } from "../../services/profile.services";
+import { SpinnerDotted } from 'spinners-react';
 
 function Profile() {
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ function Profile() {
       <h3>Mi perfil</h3>
 
       {isFetching === true ? (
-        <h3>Cargando...</h3>
+        <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />
       ) : (
         <div>
           <h5>Nombre de usuario: {profile.username}</h5>
