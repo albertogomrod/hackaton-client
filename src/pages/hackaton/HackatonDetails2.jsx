@@ -119,8 +119,6 @@ function HackatonDetails2() {
       <p>{hackatonDetails.description}</p>
       <p>Nivel: {hackatonDetails.level}</p>
       <p>Tecnologías: {hackatonDetails.tech}</p>
-      <button style={{marginBottom: "30px"}} onClick={handleUpdateData}>{buttonState}</button>
-
       <div>
         <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
           <TileLayer
@@ -135,6 +133,10 @@ function HackatonDetails2() {
           </Marker>
         </MapContainer>
       </div>
+      <br />
+      <button style={{marginBottom: "30px"}} onClick={handleUpdateData}>{buttonState}</button>
+
+      
 
       <Modal
         show={showModal}
