@@ -107,16 +107,15 @@ function HackatonCreate() {
     <div
       class="create-hackaton"
       style={{
-        marginBottom: "100px",
+        marginBottom: "200px",
         backgroundColor: "#ffc3a1",
-        marginRight: "20px",
-        marginLeft: "20px",
+        marginTop: "30px",
       }}
     >
       <button style={{ marginTop: "20px" }} onClick={() => navigate(-1)}>
         Atrás
       </button>
-      <h3 style={{marginTop: "30px"}}>Crear un Hackaton</h3>
+      <h3 style={{ marginTop: "30px" }}>Crear un Hackaton</h3>
       <form className="mb-3" onSubmit={handleSubmit}>
         <Form.Label htmlFor="title">Título: </Form.Label>
         <Form.Control
@@ -149,10 +148,7 @@ function HackatonCreate() {
           onChange={handleFileUpload}
           disabled={isUploading}
         />
-        {/* below disabled prevents the user from attempting another upload while one is already happening */}
-        {/* to render a loading message or spinner while uploading the picture */}
         {isUploading ? <h3>... uploading image</h3> : null}
-        {/* below line will render a preview of the image from cloudinary */}
         {imageUrl ? (
           <div>
             <img src={imageUrl} alt="img" width={200} />
@@ -209,14 +205,13 @@ function HackatonCreate() {
           <em>¡Pincha en el mapa para obtenertener las coordenadas exactas!</em>
         </p>
 
-        <div class="mapa-create">
+        <div style={{maxWidth: "80vw"}} class="mapa-create">
           <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            {/* invoke Marker Componentes here */}
             <ClickMarker setClickedPosition={setClickedPosition} />
             {clickedPosition !== null && <Marker position={clickedPosition} />}
           </MapContainer>
@@ -224,12 +219,9 @@ function HackatonCreate() {
 
         <br />
         <div style={{ display: "flex", justifyContent: "center" }}>
-        <button
-          type="submit"
-          onClick={handleStartCountdown}
-        >
-          Crear nuevo Hackaton
-        </button>
+          <button type="submit" onClick={handleStartCountdown}>
+            Crear nuevo Hackaton
+          </button>
         </div>
       </form>
       {errorMessage !== "" ? <p>{errorMessage}</p> : null}
