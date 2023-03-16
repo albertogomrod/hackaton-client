@@ -70,7 +70,7 @@ function NavBar() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav>
+            <Nav style={{gap: "20px"}}>
               <NavLink className="navlink" to="/login">
                 Iniciar sesión
               </NavLink>
