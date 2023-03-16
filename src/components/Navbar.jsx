@@ -28,7 +28,7 @@ function NavBar() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav style={{gap: "20px"}} className="me-auto">
               <NavLink className="navlink" to="/hackaton-list">
                 Próximos hackatones
               </NavLink>
@@ -44,12 +44,12 @@ function NavBar() {
                 </NavLink>
               ) : null}
               {isAdmin && (
-              <NavLink className="nav-link" to="/tutorial/create">
+              <NavLink  className="nav-link" to="/tutorial/create">
                 Crear un tutorial
               </NavLink>
             )}
             </Nav>
-            <Nav>
+            <Nav style={{gap: "20px"}}>
               <NavLink className="navlink" to="/profile">
                 Mi perfil
               </NavLink>
