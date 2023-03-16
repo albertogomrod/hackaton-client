@@ -29,8 +29,10 @@ function Modal({ show, message, onConfirm, onCancel }) {
     <div style={modalStyle}>
       <div style={contentStyle}>
         <p>{message}</p>
+        <div style={{display: "flex", flexDirection: "column", justifyContent: "center", gap: "10px"}}>
         <button onClick={onConfirm}>Confirmar</button>
         <button onClick={onCancel}>Cancelar</button>
+        </div>
       </div>
     </div>
   );

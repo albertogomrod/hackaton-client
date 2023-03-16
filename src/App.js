@@ -29,7 +29,7 @@ import Error from './pages/Error';
 import NotFound from './pages/NotFound';
 
 // Components
-import Navbar from "./components/Navbar";
+import NavBar from "./components/Navbar";
 import IsAdmin from "./components/IsAdmin"
 import IsCompany from "./components/IsCompany"
 import Footer from './components/Footer';
@@ -39,7 +39,7 @@ import Footer from './components/Footer';
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <NavBar />
 
       <Routes>
         <Route path="/" element={<Home />} />

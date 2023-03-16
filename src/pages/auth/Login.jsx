@@ -2,10 +2,10 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginService } from "../../services/auth.services.js";
 
-import { AuthContext } from "../../context/auth.context.js"
+import { AuthContext } from "../../context/auth.context.js";
+import { Link } from "react-router-dom";
 
 function Login() {
-  
   const { authenticateUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -43,11 +43,13 @@ function Login() {
   };
 
   return (
-    <div>
-      <h1>Log In</h1>
-
+    <div className="loginCentradito">
+      <br />
+      <button onClick={() => navigate(-1)}>Atrás</button>
+      <h1 className="bold">Iniciar sesión</h1>
       <form onSubmit={handleLogin}>
-        <label>Username:</label>
+        <label className="label">Nombre de usuario:</label>
+        <br />
         <input
           type="username"
           name="username"
@@ -57,7 +59,8 @@ function Login() {
 
         <br />
 
-        <label>Password:</label>
+        <label className="label">Contraseña:</label>
+        <br />
         <input
           type="password"
           name="password"
@@ -69,8 +72,18 @@ function Login() {
 
         {errorMessage !== "" ? <p>{errorMessage}</p> : null}
 
-        <button type="submit">Login</button>
+        <button id="buttonLoggin" type="submit">
+          Iniciar sesión
+        </button>
+        <br />
+        <h6>
+          ¿Aún no te has registrado?{" "}
+          <Link className="links" to="/signup">
+            Hazlo aquí.
+          </Link>{" "}
+        </h6>
       </form>
+      <br />
     </div>
   );
 }

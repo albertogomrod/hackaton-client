@@ -43,9 +43,17 @@ function TutorialesCreados() {
   }
 
   return (
-    <div>
-      <h3>Tutoriales creados por ti</h3>
-      <button onClick={() => navigate(-1)}>Atrás</button>
+    <div
+    class="create-hackaton"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}>
+      <button style={{ marginTop: "30px" }} onClick={() => navigate(-1)}>
+        Atrás
+      </button>
+      <h3 style={{ marginTop: "20px" }}>Tutoriales creados por ti</h3>
       {tutorials.map((eachTutorial) => {
         return (
           <div key={eachTutorial._id}>
@@ -65,7 +73,7 @@ function TutorialesCreados() {
             <br />
             <h6>{eachTutorial.description}</h6>
             <p>Tecnologías: {eachTutorial.tech}</p>
-            <Link to={`/tutorial/details/${eachTutorial._id}`}>
+            <Link style={{ textDecoration: "none"}} to={`/tutorial/details/${eachTutorial._id}`}>
               Ver tutorial
             </Link>
           </div>
@@ -74,9 +82,11 @@ function TutorialesCreados() {
       {tutorials.length === 0 ? (
         <h5>Todavía no has creado ningún Tutorial</h5>
       ) : null}
+
+      <div style={{display: "flex", flexDirection: "column", justifyContent: "center", marginTop: "20px"}}>
       <Link to="/tutorial/create">Crear un Tutorial</Link>
-      <br />
       <Link to="/tutorial-list">Ver todos los tutoriales</Link>
+      </div>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import {
 } from "../../services/hackaton.services";
 import tecnologias from "../../utils/tecnologias";
 import comunidadesAutonomas from "../../utils/comunidades";
+import Form from "react-bootstrap/Form";
 
 function HackatonEdit() {
   const params = useParams();
@@ -79,20 +80,28 @@ function HackatonEdit() {
   };
 
   return (
-    <div>
-      <h3>Editar Hackaton</h3>
-
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Título: </label>
-        <input
+    <div
+    class="create-hackaton"
+      style={{
+        marginTop: "30px",
+        marginBottom: "100px",
+        backgroundColor: "#ffc3a1",
+        marginRight: "20px",
+        marginLeft: "20px",
+      }}>
+      <button style={{marginTop: "30px"}} onClick={() => navigate(-1)}>Atrás</button>
+      <h3 style={{marginTop: "20px"}}>Editar Hackaton</h3>
+      <Form.Group className="mb-3" onSubmit={handleSubmit}>
+        <Form.Label htmlFor="title">Título: </Form.Label>
+        <Form.Control
           type="text"
           name="title"
           onChange={handleTitleChange}
           value={title}
         />
         <br />
-        <label htmlFor="description">Descripción: </label>
-        <input
+        <Form.Label htmlFor="description">Descripción: </Form.Label>
+        <Form.Control
           type="text"
           name="description"
           onChange={handleDescriptionChange}
@@ -100,8 +109,8 @@ function HackatonEdit() {
         />
         <br />
 
-        <label htmlFor="date">Fecha: </label>
-        <input
+        <Form.Label htmlFor="date">Fecha: </Form.Label>
+        <Form.Control
           type="text"
           name="date"
           onChange={handleDateChange}
@@ -109,8 +118,8 @@ function HackatonEdit() {
         />
         <br />
 
-        <label htmlFor="photo">Foto de portada: </label>
-        <input
+        <Form.Label htmlFor="photo">Foto de portada: </Form.Label>
+        <Form.Control
           type="text"
           name="photo"
           onChange={handlePhotoChange}
@@ -118,8 +127,8 @@ function HackatonEdit() {
         />
         <br />
 
-        <label htmlFor="comunidadAutonoma">Comunidad Autónoma: </label>
-        <select
+        <Form.Label htmlFor="comunidadAutonoma">Comunidad Autónoma: </Form.Label>
+        <Form.Select
           name="comunidadAutonoma"
           value={comunidadAutonoma}
           onChange={handleComunidadAutonomaChange}
@@ -130,11 +139,11 @@ function HackatonEdit() {
               {eachComunidadAutonoma}
             </option>
           ))}
-        </select>
+        </Form.Select>
         <br />
 
-        <label htmlFor="level">Nivel: </label>
-        <input
+        <Form.Label htmlFor="level">Nivel: </Form.Label>
+        <Form.Control
           type="text"
           name="level"
           onChange={handleLevelChange}
@@ -142,8 +151,8 @@ function HackatonEdit() {
         />
         <br />
 
-        <label htmlFor="tech">Tecnologías </label>
-        <select
+        <Form.Label htmlFor="tech">Tecnologías </Form.Label>
+        <Form.Select
           name="tech"
           value={tech}
           onChange={handleTechChange}
@@ -154,11 +163,11 @@ function HackatonEdit() {
               {eachTecnologia}
             </option>
           ))}
-        </select>
+        </Form.Select>
         <br />
 
         <button type="submit">Guardar cambios</button>
-      </form>
+      </Form.Group>
     </div>
   );
 }

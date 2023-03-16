@@ -45,10 +45,15 @@ function HackatonList() {
         backgroundColor: "#ffc3a1"
       }}
     >
-      <h3>Próximos hackatones</h3>
+      <h3 className="bold">Próximos hackatones</h3>
       {hackatonsByCity.length === 0 ? null : (
-        <h2>Cerca de tí: en {hackatonsByCity[0].comunidadAutonoma} </h2>
+        <div>
+        <h4>Cerca de tí: en {hackatonsByCity[0].comunidadAutonoma} </h4>
+        <h6>¡Encuentra los Hackathones que se celebran muy pronto en tu Comunidad Autónoma!</h6>
+        </div>
+        
       )}
+      
       {hackatonsByCity.map((eachHackaton) => {
         return (
           <Container key={eachHackaton._id} style={{marginTop: "25px", marginBottom: "25px"}}>
@@ -61,17 +66,17 @@ function HackatonList() {
                     alt="portadaHackaton"
                     width={400}
                   />
-                  <Card.Body>
-                    <Card.Title>{eachHackaton.title}</Card.Title>
-                    <Card.Text>
+                  <Card.Body className= "cardBody">
+                    <Card.Title className= "cardText">{eachHackaton.title}</Card.Title>
+                    <Card.Text className= "cardText">
                       <h6>{eachHackaton.date}</h6>
                       <h6>{eachHackaton.comunidadAutonoma}</h6>
                       <p>{eachHackaton.description}</p>
                       <p>Nivel: {eachHackaton.level}</p>
                       <p>Tecnologías: {eachHackaton.tech}</p>
                     </Card.Text>
-                    <button className="buttonHackaton">
-                      <Link to={`/hackaton/details/${eachHackaton._id}`} style={{textDecoration: "none", color: "#8d5252"}}>
+                    <button className="buttonHackaton masInfo">
+                      <Link to={`/hackaton/details/${eachHackaton._id}`} style={{textDecoration: "none", color: "#fff"}}>
                         Mas información
                       </Link>
                     </button>
@@ -83,9 +88,14 @@ function HackatonList() {
         );
       })}
       {allHackatones.length === 0 ? (
-        <h1>Todavía no hay hackatones disponibles</h1>
+        <h1>Todavía no hay hackatones disponibles.</h1>
       ) : (
-        <h2>En España</h2>
+        <div>
+        <h3 className="bold">En España</h3>
+        <h4>En esta lista aparecen todos los Hackathones organizados en este país.</h4>
+        <h6>Puedes conocer todos los detalles de estos en el boton de "Más información".</h6>
+        </div>
+        
       )}
       {allHackatones.map((eachHackaton) => {
         return (
@@ -99,17 +109,17 @@ function HackatonList() {
                     alt="portadaHackaton"
                     width={400}
                   />
-                  <Card.Body>
-                    <Card.Title>{eachHackaton.title}</Card.Title>
-                    <Card.Text>
+                  <Card.Body className= "cardBody">
+                    <Card.Title className= "cardText">{eachHackaton.title}</Card.Title>
+                    <Card.Text className= "cardText">
                       <h6>{eachHackaton.date}</h6>
                       <h6>{eachHackaton.comunidadAutonoma}</h6>
                       <p>{eachHackaton.description}</p>
                       <p>Nivel: {eachHackaton.level}</p>
                       <p>Tecnologías: {eachHackaton.tech}</p>
                     </Card.Text>
-                    <button className="buttonHackaton" >
-                      <Link to={`/hackaton/details/${eachHackaton._id}`} style={{textDecoration: "none", color: "#8d5252"}} >
+                    <button className="buttonHackaton masInfo" >
+                      <Link to={`/hackaton/details/${eachHackaton._id}`} style={{textDecoration: "none", color: "#fff"}} >
                         Mas información
                       </Link>
                     </button>

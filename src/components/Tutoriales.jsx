@@ -37,9 +37,9 @@ function Tutoriales(props) {
     return <h3>Cargando...</h3>;
   } else {
     return (
-      <div style={{marginTop: "30px"}} >
+      <div style={{ marginTop: "30px" }}>
         {matchedArr && matchedArr.length > 0 && (
-          <h3>Tutoriales para prepararte para este hackaton!</h3>
+          <h3>¡Tutoriales para prepararte este hackaton!</h3>
         )}
         {matchedArr ? (
           <div
@@ -50,15 +50,17 @@ function Tutoriales(props) {
               justifyContent: "center",
             }}
           >
-            {matchedArr.map((eachTutorial) => {
-              return (
-                <div key={eachTutorial.title}>
-                <Link to={`/tutorial/details/${eachTutorial._id}`}>
-                  <h3>{eachTutorial.title}</h3>
-                </Link>
-                </div>
-              );
-            })}
+            <div style={{ overflowX: "auto", scrollBehavior: "smooth", backgroundColor: "#8d5252", marginTop: "20px", padding: "20px" }}>
+              {matchedArr.map((eachTutorial) => {
+                return (
+                  <div key={eachTutorial.title}>
+                    <Link style={{textDecoration: "none", color: "white"}} to={`/tutorial/details/${eachTutorial._id}`}>
+                      <h3>{eachTutorial.title}</h3>
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         ) : null}
       </div>

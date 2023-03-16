@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getAllHackatonsService } from "../services/hackaton.services";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
 function Mapa() {
   const navigate = useNavigate();
@@ -34,10 +35,12 @@ function Mapa() {
   }
 
   return (
-    <div style={{marginTop: "80px"}} class="mapa">
-    <h3>Mapa</h3>
-    <h6>Encuentra en este mapa los mejores hackatones que se celebrarán proximamente</h6>
-      <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
+    <div class="mapa">
+    <h2 className="bold">Mapa</h2>
+    <h6>Explora en este mapa los lugares en los que se celebrarán Hackathones proximamente.</h6>
+    <br />
+    <p>Haz click sobre ellos para saber más detalles.</p>
+      <MapContainer id="mapaTamaño" center={center} zoom={5} scrollWheelZoom={false}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -57,8 +60,8 @@ function Mapa() {
           );
         })}
       </MapContainer>
-      
-      <Link to="/hackaton-list">Acerca sobre estos hackatones</Link>
+      <br />
+      <Link className= "links" to="/hackaton-list">Todos los Hackathones</Link>
     </div>
   );
 }

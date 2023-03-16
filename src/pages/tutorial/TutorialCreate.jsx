@@ -57,10 +57,10 @@ function TutorialCreate() {
     }
   };
   return (
-    <div class="create-hackaton" style={{marginBottom: "200px", backgroundColor: "#ffc3a1", marginRight: "20px", marginLeft: "20px"}}>
-      <h3>Crear Tutorial</h3>
+    <div class="create-hackaton" style={{marginBottom: "200px", backgroundColor: "#ffc3a1", marginTop: "30px"}}>
       <button onClick={() => navigate(-1)}>Atrás</button>
-      <Form.Group className="mb-3" onSubmit={handleSubmit}>
+      <h3 style={{marginTop: "30px"}}>Crear Tutorial</h3>
+      <form className="mb-3" onSubmit={handleSubmit}>
         <Form.Label htmlFor="title">Título: </Form.Label>
         <Form.Control
           type="text"
@@ -110,7 +110,7 @@ function TutorialCreate() {
         <div style={{display: "flex", justifyContent: "center"}}>
         <button type="submit" onClick={handleStartCountdown}>Crear nuevo Tutorial</button>
         </div>
-      </Form.Group>
+      </form>
       {errorMessage !== "" ? <p>{errorMessage}</p> : null}
       {isCreated === true ? (
         <div>

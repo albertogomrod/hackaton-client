@@ -40,7 +40,7 @@ function TutorialList() {
         backgroundColor: "#ffc3a1",
       }}
     >
-      <h3>Todos los tutoriales</h3>
+      <h3 style={{marginTop: "20px"}} >Tutoriales disponibles</h3>
 
       {allTutorials.length === 0 ? (
         <h1>Todavía no hay tutoriales disponibles</h1>
@@ -54,27 +54,27 @@ function TutorialList() {
             <Row>
               <Col>
                 <Card>
-                  <Card.Body>
-                    <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                  <Card.Body className= "cardBody">
+                    <div style={{display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "20px"}}>
                       <Link to={`/tutorial/details/${eachTutorial._id}`}>
                         <Player
                           url={eachTutorial.videoUrl}
                           width={"50vw"}
-                          height={"50vh"}
+                          height={"60vh"}
                           controls={false}
                           light={true}
                         />
                       </Link>
                     </div>
-                    <Card.Title>{eachTutorial.title}</Card.Title>
-                    <Card.Text>
+                    <Card.Title className= "cardText">{eachTutorial.title}</Card.Title>
+                    <Card.Text className= "cardText">
                       <p>{eachTutorial.description}</p>
                       <p>Tecnologías: {eachTutorial.tech}</p>
                     </Card.Text>
-                    <button className="buttonHackaton">
+                    <button className="buttonHackaton masInfo">
                       <Link
                         to={`/tutorial/details/${eachTutorial._id}`}
-                        style={{ textDecoration: "none", color: "#8d5252" }}
+                        style={{ textDecoration: "none", color: "#fff" }}
                       >
                         Ver tutorial
                       </Link>

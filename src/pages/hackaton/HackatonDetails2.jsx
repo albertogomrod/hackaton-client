@@ -107,11 +107,11 @@ function HackatonDetails2() {
   }
 
   return (
-    <div key={hackatonDetails._id} style={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: "#ffc3a1"}} >
+    <div class="create-hackaton create" key={hackatonDetails._id}  >
       <button style={{marginTop: "30px"}} onClick={() => navigate(-1)}>Atrás</button>
       <h3 style={{marginTop: "20px"}}>{hackatonDetails.title}</h3>
       <br />
-      <img src={hackatonDetails.photo} alt="portadaHackaton" width={"80%"} />
+      <img src={hackatonDetails.photo} alt="portadaHackaton" width={"60%"} />
       <br />
       <h6>{hackatonDetails.date}</h6>
       <h6>{hackatonDetails.comunidadAutonoma}</h6>

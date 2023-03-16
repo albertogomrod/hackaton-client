@@ -2,14 +2,12 @@
   text-align: center;
   background-color: #ffc3a1;
   color: #8d5252;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   font-family: "PT Sans Narrow", sans-serif;
+  position: relative;
+  padding-bottom: 10em;
 }
-
-/* .App div {
-  background-color: #ffc3a1;
-} */
 
 /* this is the class used for a map container in leaflet. If not done, the map will have no size and be invisible */
 .leaflet-container {
@@ -27,11 +25,16 @@
   align-items: center;
 }
 
-#bienvenida{
+.logoHome {
+  width: 500px;
+  box-shadow: none;
+}
+
+#bienvenida {
   font-weight: bold;
 }
 
-.titulos{
+.titulos {
   font-weight: bold;
 }
 
@@ -45,15 +48,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.footer {
-  background-color: #a75d5d;
-  color: #fff;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
 }
 
 * {
@@ -84,15 +78,23 @@ button > i {
   font-size: 20px;
 }
 
-img{
+img {
   border-radius: 5px;
-    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15);
 }
-
-
 
 body.open .menu-items {
   display: flex;
+}
+
+.bold {
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+#conCuenta {
+  margin-top: 50px;
 }
 
 .navbarr {
@@ -155,7 +157,31 @@ body.open .menu-items {
   background: linear-gradient(#606770, #fff);
 }
 
+.label {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 @media (width <= 580px) {
+
+  #home{
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  #homeNoLogg {
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-height: 100vh;
+  }
+
+  .mapa{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   .menu-items {
     display: none;
     width: 100%;
@@ -211,6 +237,43 @@ body.open .menu-items {
     padding-top: 100px;
     margin: 10px;
   }
+
+  #homeParticipa {
+    margin-top: 100px;
+  }
+
+  .logoHome {
+    width: 300px;
+    box-shadow: none;
+  }
+
+  .loginCentradito {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer {
+    background-color: #a75d5d;
+    position: absolute;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+
+    
+  }
+
+  .links {
+    
+    text-decoration: none;
+    color: #814a4a;
+  }
+
+  #mapaTamaño{
+    width: 350px;
+    height: 500px
+  }
+  
 
 }
 
@@ -280,10 +343,59 @@ button {
 }
 
 button:hover {
-  background-color: #005ea6;
+  background-color: #613838;
 }
 
 /* Añade un poco de espacio alrededor del título */
 h3 {
   margin-top: 0;
+}
+
+.loginCentradito {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer {
+  background-color: #a75d5d;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.cardBody {
+  background-color: #f0bea1;
+  box-shadow: 0 8px 8px 0 #a75d5d;
+}
+
+.cardText {
+  color: #a75d5d;
+}
+
+.masInfo {
+  background-color: #a75d5d;
+  color: white;
+}
+
+.masInfo .Link {
+  color: white;
+}
+
+.homeHacka {
+  background-color: #f0bea1;
+  box-shadow: 0 5px 5px 0 #a75d5d;
+  margin: 20px;
+  padding-bottom: 30px;
+}
+
+#buttonAuth {
+  margin-left: 140px;
+}
+
+#buttonLoggin {
+  margin-top: 20px;
+  margin-left: 50px;
 }

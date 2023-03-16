@@ -30,7 +30,7 @@ function HomeAsistencia() {
   } else {
     return (
       <div>
-        <h3>Eventos a los que estas apuntado</h3>
+        <h3>Eventos a los que vas a asistir</h3>
         <div
           style={{
             display: "flex",

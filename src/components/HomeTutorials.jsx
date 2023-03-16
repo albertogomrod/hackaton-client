@@ -27,8 +27,8 @@ function HomeTutorials() {
   }
 
   return (
-    <div className= "home-hackatons zoomOut">
-      <h3 className= "titulos">Tutoriales</h3>
+    <div className="home-hackatons zoomOut homeHacka">
+      <h3 className="titulos">Tutoriales</h3>
       <p>¡Saca adelante los hackathones con estos tutoriales!</p>
       <div style={{ overflowX: "auto", scrollBehavior: "smooth" }}>
         <div
@@ -42,23 +42,27 @@ function HomeTutorials() {
           {allTutoriales.map((eachTutorial) => {
             return (
               <Link to={`/tutorial/details/${eachTutorial._id}`}>
-                <figure><Player
-                  url={eachTutorial.videoUrl}
-                  width={150}
-                  height={85}
-                  controls={false}
-                  light={true}
-                /></figure>
+                <figure>
+                  <Player
+                    url={eachTutorial.videoUrl}
+                    width={150}
+                    height={85}
+                    controls={false}
+                    light={true}
+                  />
+                </figure>
               </Link>
             );
           })}
         </div>
-        {allTutoriales.length === 0 ? (
-          <h5>Todavía no hay tutoriales disponibles</h5>
-        ) : (
-          <Link className= "links" to="/tutorial-list">Ver todos los tutoriales</Link>
-        )}
       </div>
+      {allTutoriales.length === 0 ? (
+        <h5>Todavía no hay tutoriales disponibles</h5>
+      ) : (
+        <Link className="links" to="/tutorial-list">
+          Ver todos los tutoriales
+        </Link>
+      )}
     </div>
   );
 }

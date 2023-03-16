@@ -60,7 +60,7 @@ function Profile() {
   };
 
   return (
-    <div style={{marginTop: "80px"}} >
+    <div style={{marginTop: "40px"}} >
       <h3>Mi perfil</h3>
 
       {isFetching === true ? (
@@ -85,14 +85,13 @@ function Profile() {
             onCancel={handleCancelModal}
           />
           <br />
-          <HomeAsistencia />
           {isCompany === true ? (
-            <Link style={{textDecoration: "none"}} to="/profile/hackaton-list-company">
+            <Link  className="links" style={{textDecoration: "none"}} to="/profile/hackaton-list-company">
               Hackatones creados por ti
             </Link>
           ) : null}
           {isAdmin === true ? (
-            <Link to="/profile/tutorial-list-admin">
+            <Link className="links" to="/profile/tutorial-list-admin">
               Tutoriales creados por ti
             </Link>
           ) : null}

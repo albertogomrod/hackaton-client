@@ -116,8 +116,8 @@ function HackatonCreate() {
       <button style={{ marginTop: "20px" }} onClick={() => navigate(-1)}>
         Atrás
       </button>
-      <h3>Crear un Hackaton</h3>
-      <Form.Group className="mb-3" onSubmit={handleSubmit}>
+      <h3 style={{marginTop: "30px"}}>Crear un Hackaton</h3>
+      <form className="mb-3" onSubmit={handleSubmit}>
         <Form.Label htmlFor="title">Título: </Form.Label>
         <Form.Control
           type="text"
@@ -231,7 +231,7 @@ function HackatonCreate() {
           Crear nuevo Hackaton
         </button>
         </div>
-      </Form.Group>
+      </form>
       {errorMessage !== "" ? <p>{errorMessage}</p> : null}
       {isCreated === true ? (
         <div>
