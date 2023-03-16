@@ -4,7 +4,7 @@ import { getAllHackatonsService } from "../services/hackaton.services";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
-import { SpinnerDotted } from 'spinners-react';
+import { SpinnerDotted } from "spinners-react";
 
 function Mapa() {
   const navigate = useNavigate();
@@ -32,37 +32,54 @@ function Mapa() {
   };
 
   if (isFetching === true) {
-    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
+    return (
+      <SpinnerDotted
+        size={50}
+        thickness={179}
+        speed={75}
+        color="rgba(172, 57, 57, 1)"
+      />
+    );
   }
 
   return (
     <div class="mapa">
-    <h2 className="bold">Mapa</h2>
-    <h6>Explora en este mapa los lugares en los que se celebrarán Hackathones proximamente.</h6>
-    <br />
-    <p>Haz click sobre ellos para saber más detalles.</p>
-      <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-
-        {/* invoke Marker Componentes here */}
-        {hackatonDetails.map((eachElement) => {
-          return (
-            <Marker position={eachElement.coordinates}>
-              <Popup>
-                {/* Example of the rest of the document data*/}
-                <p>{eachElement.title}</p>
-                <p>{eachElement.date}</p>
-                <Link to={`/hackaton/details/${eachElement._id}`}>Mas información</Link>
-              </Popup>
-            </Marker>
-          );
-        })}
-      </MapContainer>
+      <h2 className="bold">Mapa</h2>
+      <h6>
+        Explora en este mapa los lugares en los que se celebrarán Hackathones
+        proximamente.
+      </h6>
       <br />
-      <Link className= "links" to="/hackaton-list">Todos los Hackathones</Link>
+      <p>Haz click sobre ellos para saber más detalles.</p>
+      <div>
+        <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+
+          {/* invoke Marker Componentes here */}
+          {hackatonDetails.map((eachElement) => {
+            return (
+              <Marker position={eachElement.coordinates}>
+                <Popup>
+                  {/* Example of the rest of the document data*/}
+                  <p>{eachElement.title}</p>
+                  <p>{eachElement.date}</p>
+                  <Link to={`/hackaton/details/${eachElement._id}`}>
+                    Mas información
+                  </Link>
+                </Popup>
+              </Marker>
+            );
+          })}
+        </MapContainer>
+      </div>
+
+      <br />
+      <Link className="links" to="/hackaton-list">
+        Todos los Hackathones
+      </Link>
     </div>
   );
 }
