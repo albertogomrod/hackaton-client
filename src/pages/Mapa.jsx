@@ -51,7 +51,7 @@ function Mapa() {
       </h6>
       <br />
       <p>Haz click sobre ellos para saber más detalles.</p>
-      <div>
+      <div style={{maxWidth: "80vw"}} class="mapa-create">
         <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
