@@ -35,13 +35,14 @@ function HomeCercaDeTi() {
         return null
       } else {
         return (
-          <div>
-            <h3>Cerca de tí</h3>
+          <div className= "home-hackatons zoomOut">
+            <h3 className= "titulos">Cerca de tí</h3>
+            <p>Estos hackathones se celebrarán en tu Comunidad Autónoma</p>
             <div style={{display: "flex", flexDirection: "row", gap: "20px", justifyContent: "center"}}>
             {hackatonsByCity.map((eachHackaton) => {
               return (
                 <div key={eachHackaton._id} >
-                <Link to={`/hackaton/details/${eachHackaton._id}`} ><img src={eachHackaton.photo} alt="hackaton" width={150} /></Link>
+                <Link to={`/hackaton/details/${eachHackaton._id}`} > <figure><img src={eachHackaton.photo} alt="hackaton" width={150} /></figure></Link>
                 </div>
               )
             })}

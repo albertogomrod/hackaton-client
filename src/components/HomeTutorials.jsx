@@ -27,8 +27,9 @@ function HomeTutorials() {
   }
 
   return (
-    <div>
-      <h3>Tutoriales</h3>
+    <div className= "home-hackatons zoomOut">
+      <h3 className= "titulos">Tutoriales</h3>
+      <p>¡Saca adelante los hackathones con estos tutoriales!</p>
       <div style={{ overflowX: "auto", scrollBehavior: "smooth" }}>
         <div
           style={{
@@ -41,13 +42,13 @@ function HomeTutorials() {
           {allTutoriales.map((eachTutorial) => {
             return (
               <Link to={`/tutorial/details/${eachTutorial._id}`}>
-                <Player
+                <figure><Player
                   url={eachTutorial.videoUrl}
                   width={150}
                   height={85}
                   controls={false}
                   light={true}
-                />
+                /></figure>
               </Link>
             );
           })}
@@ -55,7 +56,7 @@ function HomeTutorials() {
         {allTutoriales.length === 0 ? (
           <h5>Todavía no hay tutoriales disponibles</h5>
         ) : (
-          <Link to="/tutorial-list">Ver todos los tutoriales</Link>
+          <Link className= "links" to="/tutorial-list">Ver todos los tutoriales</Link>
         )}
       </div>
     </div>

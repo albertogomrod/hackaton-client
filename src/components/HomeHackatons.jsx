@@ -28,15 +28,16 @@ function HomeHackatons() {
       }
 
   return (
-    <div>
-      <h3>Próximos hackatones</h3>
-      <div style={{ overflowX: "auto", scrollBehavior: "smooth" }}>
-        <div style={{ display: "flex", flexDirection: "row", gap: "20px", justifyContent: "center" }}>
+    <div className= "home-hackatons zoomOut">
+      <h3 className= "titulos">Próximos hackatones</h3>
+      <p>Encuentra toda la información de los futuros eventos </p>
+      <div className= ""style={{ overflowX: "auto", scrollBehavior: "smooth" }}>
+        <div style={{ display: "flex", flexDirection: "row", gap: "40px", justifyContent: "center" , padding:"10px"}}>
           {allHackatones.map((eachHackaton) => {
             return (
               <div key={eachHackaton._id}>
                 <Link to={`/hackaton/details/${eachHackaton._id}`}>
-                  <img src={eachHackaton.photo} alt="hackaton" width={150} />
+                 <figure><img src={eachHackaton.photo} alt="hackaton" width={170} /></figure> 
                 </Link>
               </div>
             )
@@ -46,7 +47,7 @@ function HomeHackatons() {
           ) : null}
         </div>
       </div>
-      <Link to="/hackaton-list">Ver todos los hackatones disponibles</Link>
+      <Link className="links" to="/hackaton-list">Ver todos los hackatones disponibles</Link>
     </div>
   )
 }

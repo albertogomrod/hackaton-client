@@ -7,9 +7,9 @@ import {
 import tecnologias from "../../utils/tecnologias";
 import comunidadesAutonomas from "../../utils/comunidades";
 import Modal from "../../components/Modal";
+import Form from "react-bootstrap/Form";
 
 function ProfileEdit() {
-  const params = useParams();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -60,7 +60,7 @@ function ProfileEdit() {
         email,
         password,
         comunidadAutonoma,
-        tech
+        tech,
       };
       await editProfileService(updatedProfile);
       setShowModal(false);
@@ -75,20 +75,29 @@ function ProfileEdit() {
   };
 
   return (
-    <div>
-      <h3>Editar perfil de usuario</h3>
+    <div
+      class="create-hackaton"
+      style={{
+        marginTop: "30px",
+        marginBottom: "100px",
+        backgroundColor: "#ffc3a1",
+        marginRight: "20px",
+        marginLeft: "20px",
+      }}
+    >
       <button onClick={() => navigate(-1)}>Atrás</button>
-      <form>
-        <label htmlFor="username">Nombre de usuario: </label>
-        <input
+      <h3 style={{marginTop: "20px"}} >Editar perfil de usuario</h3>
+      <Form.Group className="mb-3">
+        <Form.Label htmlFor="username">Nombre de usuario: </Form.Label>
+        <Form.Control
           type="text"
           name="username"
           onChange={handleUsernameChange}
           value={username}
         />
         <br />
-        <label htmlFor="email">Email: </label>
-        <input
+        <Form.Label htmlFor="email">Email: </Form.Label>
+        <Form.Control
           type="text"
           name="email"
           onChange={handleEmailChange}
@@ -96,8 +105,8 @@ function ProfileEdit() {
         />
         <br />
 
-        <label htmlFor="password">Contraseña: </label>
-        <input
+        <Form.Label htmlFor="password">Contraseña: </Form.Label>
+        <Form.Control
           type="password"
           name="password"
           onChange={handlePasswordChange}
@@ -105,8 +114,10 @@ function ProfileEdit() {
         />
         <br />
 
-        <label htmlFor="comunidadAutonoma">Comunidad Autónoma: </label>
-        <select
+        <Form.Label htmlFor="comunidadAutonoma">
+          Comunidad Autónoma:{" "}
+        </Form.Label>
+        <Form.Select
           name="comunidadAutonoma"
           value={comunidadAutonoma}
           onChange={handleComunidadAutonomaChange}
@@ -117,30 +128,33 @@ function ProfileEdit() {
               {eachComunidadAutonoma}
             </option>
           ))}
-        </select>
+        </Form.Select>
         <br />
 
-        <label htmlFor="tech">Tecnología: </label>
-        <select name="tech" value={tech} onChange={handleTechChange}>
+        <Form.Label htmlFor="tech">Tecnología favorita: </Form.Label>
+        <Form.Select name="tech" value={tech} onChange={handleTechChange}>
           <option value="">-- Seleccione una tecnología --</option>
           {tecnologias.map((eachTecnologia) => (
             <option value={eachTecnologia} key={eachTecnologia}>
               {eachTecnologia}
             </option>
           ))}
-        </select>
+        </Form.Select>
         <br />
 
-        <button type="submit" onClick={handleShowModal}>
-          Guardar cambios
-        </button>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <button type="submit" onClick={handleShowModal}>
+            Guardar cambios
+          </button>
+        </div>
+
         <Modal
           show={showModal}
           message={modalMessage}
           onConfirm={handleConfirmModal}
           onCancel={handleCancelModal}
         />
-      </form>
+      </Form.Group>
     </div>
   );
 }

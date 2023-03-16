@@ -35,8 +35,10 @@ function TutorialDetails() {
 
   return (
     <div key={tutorialDetails._id}>
-      <h3>{tutorialDetails.title}</h3>
-      <button onClick={() => navigate(-1)}>Atrás</button>
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}>
+        <button onClick={() => navigate(-1)}>Atrás</button>
+      </div>
+      <h3 style={{marginTop: "20px"}}>{tutorialDetails.title}</h3>
       <br />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Player

@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { getAllTutorialsService } from "../../services/tutorial.services.js";
 import Player from "react-player";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { Card, Button } from "react-bootstrap";
 
 function TutorialList() {
   const navigate = useNavigate();
@@ -30,7 +34,12 @@ function TutorialList() {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        paddingBottom: "150px",
+        backgroundColor: "#ffc3a1",
+      }}
+    >
       <h3>Todos los tutoriales</h3>
 
       {allTutorials.length === 0 ? (
@@ -38,30 +47,43 @@ function TutorialList() {
       ) : null}
       {allTutorials.map((eachTutorial) => {
         return (
-          <div
+          <Container
             key={eachTutorial._id}
-            style={{ textAlign: "center", fontSize: "1.5rem", paddingBottom: "30px" }}
+            style={{ marginTop: "25px", marginBottom: "25px" }}
           >
-            <h2>{eachTutorial.title}</h2>
-            <br />
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <Link to={`/tutorial/details/${eachTutorial._id}`}>
-                <Player
-                  url={eachTutorial.videoUrl}
-                  width={"50vw"}
-                  height={"50vh"}
-                  controls={false}
-                  light={true}
-                />
-              </Link>
-            </div>
-            <br />
-            <h6>{eachTutorial.description}</h6>
-            <p>Tecnologías: {eachTutorial.tech}</p>
-            <Link to={`/tutorial/details/${eachTutorial._id}`} style={{textDecoration: "none", color: "white", border: "3px solid white", borderRadius: "5px", padding: "10px"}} >
-              Ver tutorial
-            </Link>
-          </div>
+            <Row>
+              <Col>
+                <Card>
+                  <Card.Body>
+                    <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                      <Link to={`/tutorial/details/${eachTutorial._id}`}>
+                        <Player
+                          url={eachTutorial.videoUrl}
+                          width={"50vw"}
+                          height={"50vh"}
+                          controls={false}
+                          light={true}
+                        />
+                      </Link>
+                    </div>
+                    <Card.Title>{eachTutorial.title}</Card.Title>
+                    <Card.Text>
+                      <p>{eachTutorial.description}</p>
+                      <p>Tecnologías: {eachTutorial.tech}</p>
+                    </Card.Text>
+                    <button className="buttonHackaton">
+                      <Link
+                        to={`/tutorial/details/${eachTutorial._id}`}
+                        style={{ textDecoration: "none", color: "#8d5252" }}
+                      >
+                        Ver tutorial
+                      </Link>
+                    </button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
+          </Container>
         );
       })}
     </div>

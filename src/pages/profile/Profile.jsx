@@ -60,22 +60,24 @@ function Profile() {
   };
 
   return (
-    <div>
+    <div style={{marginTop: "80px"}} >
       <h3>Mi perfil</h3>
 
       {isFetching === true ? (
         <h3>Cargando...</h3>
       ) : (
         <div>
-          <h4>Nombre de usuario: {profile.username}</h4>
+          <h5>Nombre de usuario: {profile.username}</h5>
           <p>Email: {profile.email}</p>
-          <p>Tecnología: {profile.tech}</p>
+          <p>Tecnología favorita: {profile.tech}</p>
           <p>Comunidad Autónoma: {profile.comunidadAutonoma}</p>
 
-          <Link to={`/profile/edit`}>
+          <div style={{display: "flex", justifyContent: "center", gap: "20px"}} >
+          <Link style={{textDecoration: "none"}} to={`/profile/edit`}>
             <button>Editar perfil</button>
           </Link>
           <button onClick={handleShowModal}>Borrar usuario</button>
+          </div>
           <Modal
             show={showModal}
             message={modalMessage}
@@ -85,14 +87,14 @@ function Profile() {
           <br />
           <HomeAsistencia />
           {isCompany === true ? (
-            <NavLink to="/profile/hackaton-list-company">
-              Tus hackatones creados
-            </NavLink>
+            <Link style={{textDecoration: "none"}} to="/profile/hackaton-list-company">
+              Hackatones creados por ti
+            </Link>
           ) : null}
           {isAdmin === true ? (
-            <NavLink to="/profile/tutorial-list-admin">
-              Tus tutoriales creados
-            </NavLink>
+            <Link to="/profile/tutorial-list-admin">
+              Tutoriales creados por ti
+            </Link>
           ) : null}
         </div>
       )}

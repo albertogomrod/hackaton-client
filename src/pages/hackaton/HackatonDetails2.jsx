@@ -107,36 +107,34 @@ function HackatonDetails2() {
   }
 
   return (
-    <div class="hackaton-details" key={hackatonDetails._id}>
-      <h3>{hackatonDetails.title}</h3>
-      <button onClick={() => navigate(-1)}>Atrás</button>
+    <div key={hackatonDetails._id} style={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: "#ffc3a1"}} >
+      <button style={{marginTop: "30px"}} onClick={() => navigate(-1)}>Atrás</button>
+      <h3 style={{marginTop: "20px"}}>{hackatonDetails.title}</h3>
       <br />
-      <img src={hackatonDetails.photo} alt="portadaHackaton" width={450} />
+      <img src={hackatonDetails.photo} alt="portadaHackaton" width={"80%"} />
       <br />
       <h6>{hackatonDetails.date}</h6>
       <h6>{hackatonDetails.comunidadAutonoma}</h6>
       <p>{hackatonDetails.description}</p>
       <p>Nivel: {hackatonDetails.level}</p>
       <p>Tecnologías: {hackatonDetails.tech}</p>
+      <button style={{marginBottom: "30px"}} onClick={handleUpdateData}>{buttonState}</button>
 
-      <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+      <div>
+        <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={hackatonDetails.coordinates}>
+            <Popup>
+              <p>{hackatonDetails.title}</p>
+              <p>{hackatonDetails.date}</p>
+            </Popup>
+          </Marker>
+        </MapContainer>
+      </div>
 
-        {/* invoke Marker Componentes here */}
-        <Marker position={hackatonDetails.coordinates}>
-          <Popup>
-            {/* Example of the rest of the document data*/}
-            <p>{hackatonDetails.title}</p>
-            <p>{hackatonDetails.date}</p>
-          </Popup>
-        </Marker>
-      </MapContainer>
-
-      <br />
-      <button onClick={handleUpdateData}>{buttonState}</button>
       <Modal
         show={showModal}
         message={modalMessage}

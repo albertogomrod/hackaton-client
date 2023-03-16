@@ -1,9 +1,11 @@
-import '../App.css';
+import "../App.css";
 
 function Footer() {
   return (
     <footer className="footer">
-      <p>Este es el pie de página de nuestro sitio web</p>
+      <h5>Jacaton</h5>
+      <h6>Proyecto de Aaron Barcos y Alberto Gómez</h6>
+      <p>© 2023 Copyright: La Dupla Creations</p>
     </footer>
   );
 }

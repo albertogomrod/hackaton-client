@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createTutorialService } from "../../services/tutorial.services";
 import tecnologias from "../../utils/tecnologias";
 import Player from 'react-player';
+import Form from 'react-bootstrap/Form';
 
 function TutorialCreate() {
   const navigate = useNavigate();
@@ -56,20 +57,20 @@ function TutorialCreate() {
     }
   };
   return (
-    <div>
+    <div class="create-hackaton" style={{marginBottom: "200px", backgroundColor: "#ffc3a1", marginRight: "20px", marginLeft: "20px"}}>
       <h3>Crear Tutorial</h3>
       <button onClick={() => navigate(-1)}>Atrás</button>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Título: </label>
-        <input
+      <Form.Group className="mb-3" onSubmit={handleSubmit}>
+        <Form.Label htmlFor="title">Título: </Form.Label>
+        <Form.Control
           type="text"
           name="title"
           onChange={handleTitleChange}
           value={title}
         />
         <br />
-        <label htmlFor="description">Descripción: </label>
-        <input
+        <Form.Label htmlFor="description">Descripción: </Form.Label>
+        <Form.Control
           type="text"
           name="description"
           onChange={handleDescriptionChange}
@@ -77,8 +78,8 @@ function TutorialCreate() {
         />
         <br />
   
-        <label htmlFor="links">URL: </label>
-        <input
+        <Form.Label htmlFor="links">URL: </Form.Label>
+        <Form.Control
           type="text"
           name="links"
           onChange={handleLinksChange}
@@ -95,19 +96,21 @@ function TutorialCreate() {
         </div> 
       )}
         <br />
-        <label htmlFor="tech">Tecnologías </label>
-        <select name="tech" value={tech} onChange={handleTechChange}>
+        <Form.Label htmlFor="tech">Tecnologías </Form.Label>
+        <Form.Select name="tech" value={tech} onChange={handleTechChange}>
           <option value="">-- Seleccione una tecnología --</option>
           {tecnologias.map((eachTecnologia) => (
             <option value={eachTecnologia} key={eachTecnologia}>
               {eachTecnologia}
             </option>
           ))}
-        </select>
+        </Form.Select>
         <br />
         <br />
+        <div style={{display: "flex", justifyContent: "center"}}>
         <button type="submit" onClick={handleStartCountdown}>Crear nuevo Tutorial</button>
-      </form>
+        </div>
+      </Form.Group>
       {errorMessage !== "" ? <p>{errorMessage}</p> : null}
       {isCreated === true ? (
         <div>

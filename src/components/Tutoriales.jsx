@@ -37,7 +37,7 @@ function Tutoriales(props) {
     return <h3>Cargando...</h3>;
   } else {
     return (
-      <div>
+      <div style={{marginTop: "30px"}} >
         {matchedArr && matchedArr.length > 0 && (
           <h3>Tutoriales para prepararte para este hackaton!</h3>
         )}
@@ -54,11 +54,7 @@ function Tutoriales(props) {
               return (
                 <div key={eachTutorial.title}>
                 <Link to={`/tutorial/details/${eachTutorial._id}`}>
-                  <img
-                    src={eachTutorial.image}
-                    alt="foto-tutorial"
-                    width={150}
-                  />
+                  <h3>{eachTutorial.title}</h3>
                 </Link>
                 </div>
               );

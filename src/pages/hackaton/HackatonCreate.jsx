@@ -5,8 +5,9 @@ import tecnologias from "../../utils/tecnologias";
 import comunidadesAutonomas from "../../utils/comunidades";
 import nivel from "../../utils/nivel";
 import { uploadImageHackatonService } from "../../services/upload.services";
+import Form from "react-bootstrap/Form";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"; // for Leaflet Component imports
+import { MapContainer, TileLayer, Marker } from "react-leaflet"; // for Leaflet Component imports
 import ClickMarker from "../../components/ClickMarker";
 
 function HackatonCreate() {
@@ -103,37 +104,46 @@ function HackatonCreate() {
   };
 
   return (
-    <div class="create-hackaton">
+    <div
+      class="create-hackaton"
+      style={{
+        marginBottom: "100px",
+        backgroundColor: "#ffc3a1",
+        marginRight: "20px",
+        marginLeft: "20px",
+      }}
+    >
+      <button style={{ marginTop: "20px" }} onClick={() => navigate(-1)}>
+        Atrás
+      </button>
       <h3>Crear un Hackaton</h3>
-      <button onClick={() => navigate(-1)}>Atrás</button>
-      <br />
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Título: </label>
-        <input
+      <Form.Group className="mb-3" onSubmit={handleSubmit}>
+        <Form.Label htmlFor="title">Título: </Form.Label>
+        <Form.Control
           type="text"
           name="title"
           onChange={handleTitleChange}
           value={title}
         />
         <br />
-        <label htmlFor="description">Descripción: </label>
-        <input
+        <Form.Label htmlFor="description">Descripción: </Form.Label>
+        <Form.Control
           type="text"
           name="description"
           onChange={handleDescriptionChange}
           value={description}
         />
         <br />
-        <label htmlFor="date">Fecha del evento: </label>
-        <input
+        <Form.Label htmlFor="date">Fecha del evento: </Form.Label>
+        <Form.Control
           type="date"
           name="date"
           onChange={handleDateChange}
           value={date}
         />
         <br />
-        <label>Image: </label>
-        <input
+        <Form.Label>Image: </Form.Label>
+        <Form.Control
           type="file"
           name="image"
           onChange={handleFileUpload}
@@ -149,8 +159,10 @@ function HackatonCreate() {
           </div>
         ) : null}
         <br />
-        <label htmlFor="comunidadAutonoma">Comunidad Autónoma: </label>
-        <select
+        <Form.Label htmlFor="comunidadAutonoma">
+          Comunidad Autónoma:{" "}
+        </Form.Label>
+        <Form.Select
           name="comunidadAutonoma"
           value={comunidadAutonoma}
           onChange={handleComunidadAutonomaChange}
@@ -161,31 +173,31 @@ function HackatonCreate() {
               {eachComunidadAutonoma}
             </option>
           ))}
-        </select>
+        </Form.Select>
         <br />
-        <label htmlFor="level">Nivel: </label>
-        <select name="level" value={level} onChange={handleLevelChange}>
+        <Form.Label htmlFor="level">Nivel: </Form.Label>
+        <Form.Select name="level" value={level} onChange={handleLevelChange}>
           <option value="">- Seleccione un nivel de experiencia -</option>
           {nivel.map((eachNivel) => (
             <option value={eachNivel} key={eachNivel}>
               {eachNivel}
             </option>
           ))}
-        </select>
+        </Form.Select>
         <br />
-        <label htmlFor="tech">Tecnologías </label>
-        <select name="tech" value={tech} onChange={handleTechChange}>
+        <Form.Label htmlFor="tech">Tecnologías </Form.Label>
+        <Form.Select name="tech" value={tech} onChange={handleTechChange}>
           <option value="">-- Seleccione una tecnología --</option>
           {tecnologias.map((eachTecnologia) => (
             <option value={eachTecnologia} key={eachTecnologia}>
               {eachTecnologia}
             </option>
           ))}
-        </select>
+        </Form.Select>
         <br />
 
-        <label htmlFor="clickedPosition">Coordenadas: </label>
-        <input
+        <Form.Label htmlFor="clickedPosition">Coordenadas: </Form.Label>
+        <Form.Control
           type="text"
           name="clickedPositions"
           onChange={handleMapChange}
@@ -193,9 +205,11 @@ function HackatonCreate() {
         />
         <br />
 
-        <p><em>¡Pincha en el mapa para obtenertener las coordenadas exactas!</em></p>
+        <p>
+          <em>¡Pincha en el mapa para obtenertener las coordenadas exactas!</em>
+        </p>
 
-        <div class= "mapa-create">
+        <div class="mapa-create">
           <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -209,10 +223,15 @@ function HackatonCreate() {
         </div>
 
         <br />
-        <button type="submit" onClick={handleStartCountdown}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+        <button
+          type="submit"
+          onClick={handleStartCountdown}
+        >
           Crear nuevo Hackaton
         </button>
-      </form>
+        </div>
+      </Form.Group>
       {errorMessage !== "" ? <p>{errorMessage}</p> : null}
       {isCreated === true ? (
         <div>
