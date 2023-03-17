@@ -12,12 +12,12 @@ function HomeNoLogged() {
         </h5>
         <h4 className="bold">¡Estás en el sitio adecuado!</h4>
         <h4>
-          <Link to="/signup">Regístrate</Link>
+          <Link style={{textDecoration:"none", color: "white", fontSize: "2rem"}} to="/signup">Regístrate</Link>
         </h4>
       </div>
       <div>
         <h4 id="conCuenta">
-          Si ya tienes cuenta, <Link to="/login">inicia sesión.</Link>
+          Si ya tienes cuenta, <Link style={{textDecoration:"none", color: "white"}} to="/login">inicia sesión.</Link>
         </h4>
       </div>
     </div>
