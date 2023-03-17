@@ -116,7 +116,7 @@ function HackatonDetails() {
 
   return (
     <div class="create-hackaton create" key={hackatonDetails._id}>
-      <button style={{ marginTop: "30px" }} onClick={() => navigate(-1)}>
+      <button style={{ marginTop: "30px", marginBottom: "30px" }} onClick={() => navigate(-1)}>
         Atrás
       </button>
       <button style={{ marginBottom: "30px" }} onClick={handleUpdateData}>
