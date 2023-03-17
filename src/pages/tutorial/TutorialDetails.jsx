@@ -6,12 +6,11 @@ import {
   deleteTutorialService,
 } from "../../services/tutorial.services.js";
 import Player from "react-player";
-import { SpinnerDotted } from 'spinners-react';
+import { SpinnerDotted } from "spinners-react";
 
 function TutorialDetails() {
   const navigate = useNavigate();
   const params = useParams();
-  console.log(params);
 
   const [tutorialDetails, setTutorialDetails] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
@@ -23,7 +22,6 @@ function TutorialDetails() {
   const getData = async () => {
     try {
       const response = await getTutorialDetailsService(params.tutorialId);
-      // console.log(response.data)
       setTutorialDetails(response.data);
       setIsFetching(false);
     } catch (error) {
@@ -31,15 +29,24 @@ function TutorialDetails() {
     }
   };
   if (isFetching === true) {
-    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
+    return (
+      <SpinnerDotted
+        size={50}
+        thickness={179}
+        speed={75}
+        color="rgba(172, 57, 57, 1)"
+      />
+    );
   }
 
   return (
     <div key={tutorialDetails._id}>
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}>
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
+      >
         <button onClick={() => navigate(-1)}>Atrás</button>
       </div>
-      <h3 style={{marginTop: "20px"}}>{tutorialDetails.title}</h3>
+      <h3 style={{ marginTop: "20px" }}>{tutorialDetails.title}</h3>
       <br />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Player

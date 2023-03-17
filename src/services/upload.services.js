@@ -8,7 +8,4 @@ const uploadImageProfilelService = (imageFile) => {
   return service.post("/upload/profile", imageFile);
 };
 
-export {
-  uploadImageHackatonService,
-  uploadImageProfilelService
-};
+export { uploadImageHackatonService, uploadImageProfilelService };

@@ -41,7 +41,6 @@ function Signup() {
       await signupService(newUser);
       navigate("/login");
     } catch (error) {
-      //Determinamos el tipo de error que recibimos, y actuar diferente
       if (error.response.status === 400) {
         seterrorMessage(error.response.data.errorMessage);
       } else {
@@ -160,11 +159,10 @@ function Signup() {
         <br />
 
         {errorMessage !== "" ? <p>{errorMessage}</p> : null}
-        
-          <button id="buttonAuth"  type="submit">
-            Registrarse
-          </button>
-        
+
+        <button id="buttonAuth" type="submit">
+          Registrarse
+        </button>
       </form>
     </div>
   );

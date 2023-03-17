@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Card } from "react-bootstrap";
-import { SpinnerDotted } from 'spinners-react';
+import { SpinnerDotted } from "spinners-react";
 
 function TutorialList() {
   const navigate = useNavigate();
@@ -21,7 +21,6 @@ function TutorialList() {
     setIsFetching(true);
     try {
       const response = await getAllTutorialsService();
-      console.log(response.data);
       setIsFetching(false);
       setAllTutorials(response.data);
     } catch (error) {
@@ -30,7 +29,14 @@ function TutorialList() {
   };
 
   if (isFetching === true) {
-    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
+    return (
+      <SpinnerDotted
+        size={50}
+        thickness={179}
+        speed={75}
+        color="rgba(172, 57, 57, 1)"
+      />
+    );
   }
 
   return (
@@ -40,7 +46,7 @@ function TutorialList() {
         backgroundColor: "#ffc3a1",
       }}
     >
-      <h3 style={{marginTop: "20px"}} >Tutoriales disponibles</h3>
+      <h3 style={{ marginTop: "20px" }}>Tutoriales disponibles</h3>
 
       {allTutorials.length === 0 ? (
         <h1>Todavía no hay tutoriales disponibles</h1>
@@ -54,9 +60,14 @@ function TutorialList() {
             <Row>
               <Col>
                 <Card>
-                  <Card.Body className= "cardBody">
-                    <Card.Title style={{fontSize: "2rem"}} className= "cardText">{eachTutorial.title}</Card.Title>
-                    <Card.Text className= "cardText">
+                  <Card.Body className="cardBody">
+                    <Card.Title
+                      style={{ fontSize: "2rem" }}
+                      className="cardText"
+                    >
+                      {eachTutorial.title}
+                    </Card.Title>
+                    <Card.Text className="cardText">
                       <p>{eachTutorial.description}</p>
                       <p>Tecnologías: {eachTutorial.tech}</p>
                     </Card.Text>

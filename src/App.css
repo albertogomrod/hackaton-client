@@ -163,8 +163,7 @@ body.open .menu-items {
 }
 
 @media (width <= 580px) {
-
-  #home{
+  #home {
     padding-top: 30px;
     padding-left: 20px;
     padding-right: 20px;
@@ -177,7 +176,7 @@ body.open .menu-items {
     min-height: 100vh;
   }
 
-  .mapa{
+  .mapa {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -259,22 +258,17 @@ body.open .menu-items {
     color: #fff;
     padding: 10px;
     width: 100%;
-
-    
   }
 
   .links {
-    
     text-decoration: none;
     color: #814a4a;
   }
 
-  #mapaTamaño{
+  #mapaTamaño {
     width: 350px;
-    height: 500px
+    height: 500px;
   }
-  
-
 }
 
 .buttonHackaton {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAllTutorialsService } from "../services/tutorial.services.js";
 import { Link } from "react-router-dom";
-import { SpinnerDotted } from 'spinners-react';
+import { SpinnerDotted } from "spinners-react";
 
 function Tutoriales(props) {
   const [allTutorials, setAllTutorials] = useState(null);
@@ -32,10 +32,15 @@ function Tutoriales(props) {
     setMatchedArr(filteredTutoriales);
   }, [allTutorials, techToSearch]);
 
-  console.log(matchedArr);
-
   if (isFetching === true) {
-    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
+    return (
+      <SpinnerDotted
+        size={50}
+        thickness={179}
+        speed={75}
+        color="rgba(172, 57, 57, 1)"
+      />
+    );
   } else {
     return (
       <div style={{ marginTop: "30px" }}>
@@ -51,11 +56,20 @@ function Tutoriales(props) {
               justifyContent: "center",
             }}
           >
-            <div style={{ overflowX: "auto", scrollBehavior: "smooth", backgroundColor: "#8d5252", marginTop: "20px", padding: "20px" }}>
+            <div
+              style={{
+                backgroundColor: "#8d5252",
+                marginTop: "20px",
+                padding: "20px",
+              }}
+            >
               {matchedArr.map((eachTutorial) => {
                 return (
                   <div key={eachTutorial.title}>
-                    <Link style={{textDecoration: "none", color: "white"}} to={`/tutorial/details/${eachTutorial._id}`}>
+                    <Link
+                      style={{ textDecoration: "none", color: "white" }}
+                      to={`/tutorial/details/${eachTutorial._id}`}
+                    >
                       <h3>{eachTutorial.title}</h3>
                     </Link>
                   </div>

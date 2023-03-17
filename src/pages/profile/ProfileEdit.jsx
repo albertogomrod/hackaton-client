@@ -86,7 +86,7 @@ function ProfileEdit() {
       }}
     >
       <button onClick={() => navigate(-1)}>Atrás</button>
-      <h3 style={{marginTop: "20px"}} >Editar perfil de usuario</h3>
+      <h3 style={{ marginTop: "20px" }}>Editar perfil de usuario</h3>
       <Form.Group className="mb-3">
         <Form.Label htmlFor="username">Nombre de usuario: </Form.Label>
         <Form.Control

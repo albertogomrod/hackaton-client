@@ -81,16 +81,19 @@ function HackatonEdit() {
 
   return (
     <div
-    class="create-hackaton"
+      class="create-hackaton"
       style={{
         marginTop: "30px",
         marginBottom: "100px",
         backgroundColor: "#ffc3a1",
         marginRight: "20px",
         marginLeft: "20px",
-      }}>
-      <button style={{marginTop: "30px"}} onClick={() => navigate(-1)}>Atrás</button>
-      <h3 style={{marginTop: "20px"}}>Editar Hackaton</h3>
+      }}
+    >
+      <button style={{ marginTop: "30px" }} onClick={() => navigate(-1)}>
+        Atrás
+      </button>
+      <h3 style={{ marginTop: "20px" }}>Editar Hackaton</h3>
       <Form.Group className="mb-3" onSubmit={handleSubmit}>
         <Form.Label htmlFor="title">Título: </Form.Label>
         <Form.Control
@@ -127,7 +130,9 @@ function HackatonEdit() {
         />
         <br />
 
-        <Form.Label htmlFor="comunidadAutonoma">Comunidad Autónoma: </Form.Label>
+        <Form.Label htmlFor="comunidadAutonoma">
+          Comunidad Autónoma:{" "}
+        </Form.Label>
         <Form.Select
           name="comunidadAutonoma"
           value={comunidadAutonoma}
@@ -152,11 +157,7 @@ function HackatonEdit() {
         <br />
 
         <Form.Label htmlFor="tech">Tecnologías </Form.Label>
-        <Form.Select
-          name="tech"
-          value={tech}
-          onChange={handleTechChange}
-        >
+        <Form.Select name="tech" value={tech} onChange={handleTechChange}>
           <option value="">-- Seleccione una tecnología --</option>
           {tecnologias.map((eachTecnologia) => (
             <option value={eachTecnologia} key={eachTecnologia}>

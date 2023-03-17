@@ -7,7 +7,7 @@ import nivel from "../../utils/nivel";
 import { uploadImageHackatonService } from "../../services/upload.services";
 import Form from "react-bootstrap/Form";
 
-import { MapContainer, TileLayer, Marker } from "react-leaflet"; // for Leaflet Component imports
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import ClickMarker from "../../components/ClickMarker";
 
 function HackatonCreate() {
@@ -27,7 +27,7 @@ function HackatonCreate() {
 
   const [isUploading, setIsUploading] = useState(false);
 
-  const [center, setCenter] = useState([40.463667, -3.74922]); // state used to define the center of the map on first render. [51.505, -0.09] is just an example.
+  const [center, setCenter] = useState([40.463667, -3.74922]);
   const [clickedPosition, setClickedPosition] = useState(null);
 
   useEffect(() => {
@@ -205,7 +205,7 @@ function HackatonCreate() {
           <em>¡Pincha en el mapa para obtenertener las coordenadas exactas!</em>
         </p>
 
-        <div style={{maxWidth: "80vw"}} class="mapa-create">
+        <div style={{ maxWidth: "80vw" }} class="mapa-create">
           <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

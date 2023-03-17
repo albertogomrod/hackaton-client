@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { getHackatonByProfile } from "../../services/profile.services";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { deleteHackatonService } from "../../services/hackaton.services";
-import { SpinnerDotted } from 'spinners-react';
+import { SpinnerDotted } from "spinners-react";
 
 function HackatonesCreados() {
   const navigate = useNavigate();
-  const params = useParams();
-  console.log(params);
 
   const [hackatones, setHackatones] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
@@ -19,9 +17,7 @@ function HackatonesCreados() {
   const getData = async () => {
     try {
       const response = await getHackatonByProfile();
-      console.log(response.data);
       setIsFetching(false);
-
       setHackatones(response.data);
     } catch (error) {
       console.log(error);
@@ -39,7 +35,14 @@ function HackatonesCreados() {
   };
 
   if (isFetching === true) {
-    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
+    return (
+      <SpinnerDotted
+        size={50}
+        thickness={179}
+        speed={75}
+        color="rgba(172, 57, 57, 1)"
+      />
+    );
   }
 
   return (
@@ -88,7 +91,14 @@ function HackatonesCreados() {
       {hackatones.length === 0 ? (
         <h5>Todavía no has creado ningún Hackaton</h5>
       ) : null}
-      <div style={{display: "flex", flexDirection: "column", justifyContent: "center", marginTop: "20px"}}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          marginTop: "20px",
+        }}
+      >
         <Link to="/hackaton/create">Crear un Hackaton</Link>
         <Link to="/hackaton-list">Ver todos los hackatones</Link>
       </div>

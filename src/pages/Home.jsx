@@ -12,10 +12,10 @@ function Home() {
 
   if (isLoggedIn === true) {
     return (
-      <div id= "home" >
-      <br />
-      <h2 id="bienvenida">¡Bienvenido a Jacatón!</h2>
-      <h4>Los mejores eventos del país al alcance de tu mano</h4>
+      <div id="home">
+        <br />
+        <h2 id="bienvenida">¡Bienvenido a Jacatón!</h2>
+        <h4>Los mejores eventos del país al alcance de tu mano</h4>
         <HomeHackatons />
         <HomeCercaDeTi />
         <HomeTutorials />
@@ -23,7 +23,7 @@ function Home() {
     );
   } else {
     return (
-      <div id= "home">
+      <div id="home">
         <HomeNoLogged />
       </div>
     );

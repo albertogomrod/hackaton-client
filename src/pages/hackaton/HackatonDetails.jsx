@@ -6,19 +6,26 @@ import {
   deleteHackatonArrService,
   getHackatonByAssistService,
 } from "../../services/hackaton.services";
-import { SpinnerDotted } from 'spinners-react';
+import Modal from "../../components/Modal";
+import Tutoriales from "../../components/Tutoriales";
+import { SpinnerDotted } from "spinners-react";
+
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 function HackatonDetails() {
   const navigate = useNavigate();
   const params = useParams();
   const { hackatonId } = params;
-  
 
   const [hackatonDetails, setHackatonDetails] = useState(null);
   const [hackatonsAssist, setHackatonsAssist] = useState(null);
   const [buttonState, setButtonState] = useState("Asistir");
-  
+
+  const [center, setCenter] = useState([40.463667, -3.74922]);
+
   const [isFetching, setIsFetching] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   useEffect(() => {
     getData();
@@ -50,55 +57,103 @@ function HackatonDetails() {
     }
   }, [hackatonDetails, hackatonsAssist]);
 
-  const updateData = async () => {
+  const handleUpdateData = async () => {
     const existe = hackatonsAssist.some(
       (eachHackaton) => eachHackaton._id === hackatonId
     );
-    let confirmMessage = "";
-  
-    if (existe === true) {
-      confirmMessage = "¿Seguro que quieres dejar de asistir a este hackaton?";
+
+    if (existe) {
+      setModalMessage("¿Seguro que quieres dejar de asistir a este hackaton?");
     } else {
-      confirmMessage = "¿Seguro que quieres asistir a este hackaton?";
+      setModalMessage("¿Seguro que quieres asistir a este hackaton?");
     }
-  
-    const confirmed = window.confirm(confirmMessage);
-    if (confirmed) {
-      if (existe === true) {
-        try {
-          await deleteHackatonArrService(hackatonId);
-          setButtonState("Asistir");
-        } catch (error) {
-          navigate("/error");
-        }
-      } else {
-        try {
-          await updateHackatonArrService(hackatonId);
-          setButtonState("No asistir");
-        } catch (error) {
-          navigate("/error");
-        }
+
+    setShowModal(true);
+  };
+
+  const handleConfirmModal = async () => {
+    const existe = hackatonsAssist.some(
+      (eachHackaton) => eachHackaton._id === hackatonId
+    );
+
+    if (existe) {
+      try {
+        await deleteHackatonArrService(hackatonId);
+        setButtonState("Asistir");
+        const response = await getHackatonByAssistService();
+        setHackatonsAssist(response.data);
+        setShowModal(false);
+      } catch (error) {
+        navigate("/error");
+      }
+    } else {
+      try {
+        await updateHackatonArrService(hackatonId);
+        setButtonState("No asistir");
+        const response = await getHackatonByAssistService();
+        setHackatonsAssist(response.data);
+        setShowModal(false);
+      } catch (error) {
+        navigate("/error");
       }
     }
   };
 
-  if (isFetching === true) {
-    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
+  const handleCancelModal = () => {
+    setShowModal(false);
+  };
+
+  if (isFetching) {
+    return (
+      <SpinnerDotted
+        size={50}
+        thickness={179}
+        speed={75}
+        color="rgba(172, 57, 57, 1)"
+      />
+    );
   }
 
   return (
-    <div key={hackatonDetails._id}>
-      <h3>{hackatonDetails.title}</h3>
-      <button onClick={() => navigate(-1)}>Atrás</button>
+    <div class="create-hackaton create" key={hackatonDetails._id}>
+      <button style={{ marginTop: "30px" }} onClick={() => navigate(-1)}>
+        Atrás
+      </button>
+      <h3 style={{ marginTop: "20px" }}>{hackatonDetails.title}</h3>
       <br />
-      <img src={hackatonDetails.photo} alt="portadaHackaton" width={100}/>
+      <img src={hackatonDetails.photo} alt="portadaHackaton" width={"60%"} />
       <br />
       <h6>{hackatonDetails.date}</h6>
       <h6>{hackatonDetails.comunidadAutonoma}</h6>
       <p>{hackatonDetails.description}</p>
       <p>Nivel: {hackatonDetails.level}</p>
       <p>Tecnologías: {hackatonDetails.tech}</p>
-      {<button onClick={updateData}>{buttonState}</button>}
+      <div>
+        <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={hackatonDetails.coordinates}>
+            <Popup>
+              <p>{hackatonDetails.title}</p>
+              <p>{hackatonDetails.date}</p>
+            </Popup>
+          </Marker>
+        </MapContainer>
+      </div>
+      <br />
+      <button style={{ marginBottom: "30px" }} onClick={handleUpdateData}>
+        {buttonState}
+      </button>
+
+      <Modal
+        show={showModal}
+        message={modalMessage}
+        onConfirm={handleConfirmModal}
+        onCancel={handleCancelModal}
+      />
+      <Tutoriales tech={hackatonDetails.tech} />
       <br />
     </div>
   );

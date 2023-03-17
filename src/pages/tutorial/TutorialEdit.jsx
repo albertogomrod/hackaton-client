@@ -1,6 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getTutorialDetailsService, editTutorialService } from "../../services/tutorial.services";
+import {
+  getTutorialDetailsService,
+  editTutorialService,
+} from "../../services/tutorial.services";
 import tecnologias from "../../utils/tecnologias";
 
 function TutorialEdit() {
@@ -24,13 +27,7 @@ function TutorialEdit() {
   const getData = async () => {
     try {
       const response = await getTutorialDetailsService(params.tutorialId);
-      const {
-        title,
-        image,
-        description,
-        links,
-        tech,
-      } = response.data;
+      const { title, image, description, links, tech } = response.data;
       setDescription(description);
       setLinks(links);
       setImage(image);
@@ -48,16 +45,16 @@ function TutorialEdit() {
         title: title,
         image: image,
         description: description,
-        links:links,
-        tech:tech,
-      }
-      await editTutorialService(params.tutorialId, updatedTutorial)
-      navigate(`/tutorial/details/${params.tutorialId}`)
+        links: links,
+        tech: tech,
+      };
+      await editTutorialService(params.tutorialId, updatedTutorial);
+      navigate(`/tutorial/details/${params.tutorialId}`);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
-  
+
   return (
     <div>
       <h3>Editar Tutorial</h3>
@@ -95,11 +92,7 @@ function TutorialEdit() {
         />
         <br />
         <label htmlFor="tech">Tecnologías </label>
-        <select
-          name="tech"
-          value={tech}
-          onChange={handleTechChange}
-        >
+        <select name="tech" value={tech} onChange={handleTechChange}>
           <option value="">-- Seleccione una tecnología --</option>
           {tecnologias.map((eachTecnologia) => (
             <option value={eachTecnologia} key={eachTecnologia}>

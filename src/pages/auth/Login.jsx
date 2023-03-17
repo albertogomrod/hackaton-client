@@ -27,8 +27,6 @@ function Login() {
     try {
       const response = await loginService(userCredentials);
       localStorage.setItem("authToken", response.data.authToken);
-      console.log("Token Validado");
-
       authenticateUser();
       navigate("/");
     } catch (error) {

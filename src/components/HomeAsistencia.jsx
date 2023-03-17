@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getHackatonByAssistService } from "../services/hackaton.services.js";
-import { SpinnerDotted } from 'spinners-react';
+import { SpinnerDotted } from "spinners-react";
 
 function HomeAsistencia() {
   const [hackatonsAssist, setHackatonsAssist] = useState(null);
@@ -23,7 +23,14 @@ function HomeAsistencia() {
   };
 
   if (isFetching === true) {
-    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />
+    return (
+      <SpinnerDotted
+        size={50}
+        thickness={179}
+        speed={75}
+        color="rgba(172, 57, 57, 1)"
+      />
+    );
   }
 
   if (hackatonsAssist.length === 0) {

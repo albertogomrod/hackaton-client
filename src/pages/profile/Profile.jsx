@@ -10,7 +10,7 @@ import {
   getProfileService,
   deleteProfileService,
 } from "../../services/profile.services";
-import { SpinnerDotted } from 'spinners-react';
+import { SpinnerDotted } from "spinners-react";
 
 function Profile() {
   const navigate = useNavigate();
@@ -61,11 +61,16 @@ function Profile() {
   };
 
   return (
-    <div style={{marginTop: "40px"}} >
+    <div style={{ marginTop: "40px" }}>
       <h3>Mi perfil</h3>
 
       {isFetching === true ? (
-        <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />
+        <SpinnerDotted
+          size={50}
+          thickness={179}
+          speed={75}
+          color="rgba(172, 57, 57, 1)"
+        />
       ) : (
         <div>
           <h5>Nombre de usuario: {profile.username}</h5>
@@ -73,11 +78,13 @@ function Profile() {
           <p>Tecnología favorita: {profile.tech}</p>
           <p>Comunidad Autónoma: {profile.comunidadAutonoma}</p>
 
-          <div style={{display: "flex", justifyContent: "center", gap: "20px"}} >
-          <Link style={{textDecoration: "none"}} to={`/profile/edit`}>
-            <button>Editar perfil</button>
-          </Link>
-          <button onClick={handleShowModal}>Borrar usuario</button>
+          <div
+            style={{ display: "flex", justifyContent: "center", gap: "20px" }}
+          >
+            <Link style={{ textDecoration: "none" }} to={`/profile/edit`}>
+              <button>Editar perfil</button>
+            </Link>
+            <button onClick={handleShowModal}>Borrar usuario</button>
           </div>
           <Modal
             show={showModal}
@@ -87,7 +94,11 @@ function Profile() {
           />
           <br />
           {isCompany === true ? (
-            <Link  className="links" style={{textDecoration: "none"}} to="/profile/hackaton-list-company">
+            <Link
+              className="links"
+              style={{ textDecoration: "none" }}
+              to="/profile/hackaton-list-company"
+            >
               Hackatones creados por ti
             </Link>
           ) : null}

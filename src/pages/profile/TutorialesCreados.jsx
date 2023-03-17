@@ -1,27 +1,23 @@
 import { useEffect, useState } from "react";
 import { getTutorialByProfile } from "../../services/profile.services";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { deleteTutorialService } from "../../services/tutorial.services";
 import Player from "react-player";
-import { SpinnerDotted } from 'spinners-react';
+import { SpinnerDotted } from "spinners-react";
 
 function TutorialesCreados() {
   const navigate = useNavigate();
-  const params = useParams();
-  console.log(params);
 
   const [tutorials, setTutorials] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
-    // obtener los elementos del backend
     getData();
   }, []);
 
   const getData = async () => {
     try {
       const response = await getTutorialByProfile();
-      console.log(response.data);
       setIsFetching(false);
       setTutorials(response.data);
     } catch (error) {
@@ -40,17 +36,25 @@ function TutorialesCreados() {
   };
 
   if (isFetching === true) {
-    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />;
+    return (
+      <SpinnerDotted
+        size={50}
+        thickness={179}
+        speed={75}
+        color="rgba(172, 57, 57, 1)"
+      />
+    );
   }
 
   return (
     <div
-    class="create-hackaton"
+      class="create-hackaton"
       style={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-      }}>
+      }}
+    >
       <button style={{ marginTop: "30px" }} onClick={() => navigate(-1)}>
         Atrás
       </button>
@@ -74,9 +78,25 @@ function TutorialesCreados() {
             <br />
             <h6>{eachTutorial.description}</h6>
             <p>Tecnologías: {eachTutorial.tech}</p>
-            <Link style={{ textDecoration: "none"}} to={`/tutorial/details/${eachTutorial._id}`}>
-              Ver tutorial
-            </Link>
+            <div
+              style={{ display: "flex", justifyContent: "center", gap: "20px" }}
+            >
+              <Link
+                style={{ textDecoration: "none" }}
+                to={`/tutorial/details/${eachTutorial._id}`}
+              >
+                Ver tutorial
+              </Link>
+              <Link
+                style={{ textDecoration: "none" }}
+                onClick={() => {
+                  handleDeleteTutorial(eachTutorial._id);
+                }}
+              >
+                {" "}
+                Borrar tutorial
+              </Link>
+            </div>
           </div>
         );
       })}
@@ -84,9 +104,16 @@ function TutorialesCreados() {
         <h5>Todavía no has creado ningún Tutorial</h5>
       ) : null}
 
-      <div style={{display: "flex", flexDirection: "column", justifyContent: "center", marginTop: "20px"}}>
-      <Link to="/tutorial/create">Crear un Tutorial</Link>
-      <Link to="/tutorial-list">Ver todos los tutoriales</Link>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          marginTop: "20px",
+        }}
+      >
+        <Link to="/tutorial/create">Crear un Tutorial</Link>
+        <Link to="/tutorial-list">Ver todos los tutoriales</Link>
       </div>
     </div>
   );

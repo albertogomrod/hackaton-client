@@ -10,7 +10,8 @@ import Container from "react-bootstrap/Container";
 function NavBar() {
   const navigate = useNavigate();
 
-  const { isLoggedIn, authenticateUser, isCompany, isAdmin } = useContext(AuthContext);
+  const { isLoggedIn, authenticateUser, isCompany, isAdmin } =
+    useContext(AuthContext);
 
   // LOGOUT
   const handleLogout = () => {
@@ -28,7 +29,7 @@ function NavBar() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav style={{gap: "20px"}} className="me-auto">
+            <Nav style={{ gap: "20px" }} className="me-auto">
               <NavLink className="navlink" to="/hackaton-list">
                 Próximos hackatones
               </NavLink>
@@ -44,12 +45,12 @@ function NavBar() {
                 </NavLink>
               ) : null}
               {isAdmin && (
-              <NavLink  className="nav-link" to="/tutorial/create">
-                Crear un tutorial
-              </NavLink>
-            )}
+                <NavLink className="nav-link" to="/tutorial/create">
+                  Crear un tutorial
+                </NavLink>
+              )}
             </Nav>
-            <Nav style={{gap: "20px"}}>
+            <Nav style={{ gap: "20px" }}>
               <NavLink className="navlink" to="/profile">
                 Mi perfil
               </NavLink>
@@ -70,7 +71,7 @@ function NavBar() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav style={{gap: "20px"}}>
+            <Nav style={{ gap: "20px" }}>
               <NavLink className="navlink" to="/login">
                 Iniciar sesión
               </NavLink>

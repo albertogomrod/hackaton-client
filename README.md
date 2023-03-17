@@ -1,70 +1,203 @@
-# Getting Started with Create React App
+# Project Name
+Jacaton
+## Description
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Una comunidad donde los usuarios podrán encontrar los Hackathones que se celebrarán en España. Las empresas podrán publicar sus eventos para darle más difusión.
 
-## Available Scripts
+## User Stories
 
-In the project directory, you can run:
+-  **404:** Usuarios, administradores, empresas y sin registro, llegarán a esta página cuando la ruta no exista.
+-  **Signup:** Los usuarios no registrados en la plataforma podrán hacerlo en esta página.
+-  **Login:** Los usuarios registrados podrán acceder a la plataforma para conocer los próximos hackathones y ver tutoriales.
+-  **Logout:** Los usuarios podrán cerrar sesión con este botón.
+-  **Añadir Hackathones** Las empresas podrán crear un nuevo evento y compartirlo con la comunidad. 
+-  **Añadir Tutoriales** Los administradores pueden añadir tutoriales.
+-  **Lista de Hackathones** Todos los usuarios podrán ver la lista de hackathones y apuntarse.
+-  **Lista de Tutoriales** Los usuarios podrán ver los tutoriales necesarios para superar esos hackathones.
+-  **Mapa** El usuario podrá ver en un mapa todos los hackatones que se van a celebrar.
 
-### `npm start`
+## Backlog
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Geo Location:
+- Puedes ver los hackathones en un mapa.
+  
+# Client
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Routes
 
-### `npm test`
+- / - Home
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- /login - Inicio de sesión
+- /signup - Registro
 
-### `npm run build`
+- /hackaton-list - Lista de hackathones
+- /hackaton/details/:id - Detalles del hackathon
+- /hackaton/create- Crear un hackaton
+- /hackaton/edit/:id- Editar hackaton
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- /tutorial-list - Lista de tutoriales
+- /tutorial/details/:id - Detalles del tutorial
+- /tutorial/create- Crear un tutorial
+- /tutorial/edit/:id- Editar tutorial
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- /hackaton/map- Mapa de hackatones
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- /profile - Detalles del perfil
+- /profile/edit - Editar el perfil
 
-### `npm run eject`
+- 404
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Pages
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Home (Pública)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Inicio de sesión (Pública)
+- Registro (Pública)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Lista de hackathones (Usuario, Empresa, Administrador)
+- Detalles del hackathon (Usuario, Empresa, Administrador)
+- Crear un hackaton (Empresa)
+- Editar hackaton (Empresa)
 
-## Learn More
+- Lista de tutoriales (Usuario, Empresa, Administrador)
+- Detalles del tutorial (Usuario, Empresa, Administrador)
+- Crear un tutorial (Administrador)
+- Editar tutorial (Administrador)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Mapa de hackatones (Usuario, Empresa, Administrador)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Detalles del perfil (Usuario, Empresa, Administrador)
+- Editar el perfil (Usuario, Empresa, Administrador)
 
-### Code Splitting
+- 404 (Usuario, Empresa, Administrador)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## IO
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Services
 
-### Making a Progressive Web App
+- Auth Service
+  - loginService (userCredentials)
+  - signupService (newUser)
+  - verifyService ()
+- Hackathon Service
+  - getAllHackatonsService()
+  - getHackatonDetailsService(hackatonId)
+  - createHackatonService (newUser)
+  - editHackatonService (hackatonId, updatedHackaton)
+  - deleteHackatonService (hackatonId)
+  - getHackatonByCityService ()
+  - updateHackatonArrService (hackatonId)
+  - deleteHackatonArrService (hackatonId)
+  - getHackatonByAssistService ()
+  - getHackatonByMap ()
+- Profile Service
+  - getProfileService ()
+  - deleteProfileService ()
+  - editProfileService (updatedProfile)
+  - getHackatonByProfile ()
+  - getTutorialByProfile ()
+-Tutorial Service
+  - getAllTutorialsService ()
+  - getTutorialDetailsService (tutorialId)
+  - createTutorialService (newTutorial)
+  - editTutorialService (tutorialId, updatedTutorial)
+  - deleteTutorialService (tutorialId)
+- Upload Service
+  - uploadImageHackatonService (imageFile)
+  - uploadImageProfilelService (imageFile)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Server
 
-### Advanced Configuration
+## Models
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Modelo User
 
-### Deployment
+```
+email - String /Require
+password - String /Require
+username - String /Require /Unique
+profilePhoto - String
+comunidadAutonoma - String /Enum
+tech - String /Enum
+level - String /Enum
+hackaton - ObjectID<hackaton>
+role - String /Enum
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+Modelo Hackathon
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+title - String /Require/Unique
+date - String /Require
+tech - String /Enum
+level - String /Enum
+photo - String
+description - String
+owner - ObjectID<user>
+coordinates - Number
+
+```
+
+Modelo Tutorial
+
+```
+title - String /Require/Unique
+tech - String /Enum
+description - String
+owner - ObjectID<user>
+videoUrl - String
+
+```
+
+## API Endpoints/Backend Routes
+
+- POST "/api/auth/signup"
+- POST "api/auth/login"
+- GET "api/auth/verify"
+
+- POST "/api/hackaton/create"
+- PATCH "/api/hackaton/edit/:hackatonId"
+- DELETE "/api/hackaton/delete/:hackatonId"
+- GET "/api/hackaton/details/:hackatonId"
+- GET "/api/hackaton/cercaDeTi"
+- PATCH "/api/hackaton/assist/:hackatonId"
+- PATCH "/api/hackaton/assist-delete/:hackatonId" 
+- GET "/api/hackaton/assist"
+- GET "/api/hackaton/map"
+
+- GET "/api/tutorials-list"
+- GET "/api/hackaton-list"
+
+- GET "/api/profile/:id"
+- PATCH "/api/profile/edit/:id"
+- DELETE "/api/profile/delete/:id"
+- GET "/api/profile/hackaton-list-company"
+- GET "/api/profile/tutorial-list-admin"
+
+- POST "/api/tutorial/create"
+- PATCH "/api/tutorial/edit/:tutorialId"
+- DELETE "/api/tutorial/delete/:tutorialId"
+- GET "/api/tutorial/details/:tutorialId"
+
+- POST "/api/upload/hackaton" 
+- POST "/api/upload/profile"
+
+
+## Links
+
+
+### Git
+
+The url to your repository and to your deployed project
+
+[Client repository Link](https://github.com/albertogomrod/hackaton-client)
+[Server repository Link](https://github.com/albertogomrod/hackaton-server)
+
+[Deploy Link](https://hackaton-app.netlify.app/)
+
+### Slides
+
+The url to your presentation slides
+
+[Slides Link](http://slides.com)

@@ -4,7 +4,7 @@ import {
   getHackatonByCityService,
   getAllHackatonsService,
 } from "../services/hackaton.services.js";
-import { SpinnerDotted } from 'spinners-react';
+import { SpinnerDotted } from "spinners-react";
 
 function HomeCercaDeTi() {
   const [hackatonsByCity, setHackatonsByCity] = useState(null);
@@ -29,7 +29,14 @@ function HomeCercaDeTi() {
   };
 
   if (isFetching === true) {
-    return <SpinnerDotted size={50} thickness={179} speed={75} color="rgba(172, 57, 57, 1)" />
+    return (
+      <SpinnerDotted
+        size={50}
+        thickness={179}
+        speed={75}
+        color="rgba(172, 57, 57, 1)"
+      />
+    );
   }
 
   if (allHackatones.length === 0) {
@@ -41,15 +48,15 @@ function HomeCercaDeTi() {
       <div className="home-hackatons zoomOut homeHacka">
         <h3 className="titulos">Cerca de tí</h3>
         <p>Estos hackathones se celebrarán en tu Comunidad Autónoma</p>
-        <div style={{ overflowX: "auto", scrollBehavior: "smooth"}}>
+        <div style={{ overflowX: "auto", scrollBehavior: "smooth" }}>
           <div
             style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: "40px",
-            justifyContent: "center",
-            padding: "10px",
-          }}
+              display: "flex",
+              flexDirection: "row",
+              gap: "40px",
+              justifyContent: "center",
+              padding: "10px",
+            }}
           >
             {hackatonsByCity.map((eachHackaton) => {
               return (

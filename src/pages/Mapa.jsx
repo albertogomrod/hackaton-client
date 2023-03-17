@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { getAllHackatonsService } from "../services/hackaton.services";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Card } from "react-bootstrap";
 import { SpinnerDotted } from "spinners-react";
 
 function Mapa() {
@@ -26,7 +25,6 @@ function Mapa() {
       setHackatonDetails(response.data);
       setIsFetching(false);
     } catch (error) {
-      console.log(error);
       navigate("/error");
     }
   };
@@ -51,7 +49,7 @@ function Mapa() {
       </h6>
       <br />
       <p>Haz click sobre ellos para saber más detalles.</p>
-      <div style={{maxWidth: "80vw"}} class="mapa-create">
+      <div style={{ maxWidth: "80vw" }} class="mapa-create">
         <MapContainer center={center} zoom={5} scrollWheelZoom={false}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
