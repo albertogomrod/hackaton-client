@@ -119,6 +119,9 @@ function HackatonDetails() {
       <button style={{ marginTop: "30px" }} onClick={() => navigate(-1)}>
         Atrás
       </button>
+      <button style={{ marginBottom: "30px" }} onClick={handleUpdateData}>
+        {buttonState}
+      </button>
       <h3 style={{ marginTop: "20px" }}>{hackatonDetails.title}</h3>
       <br />
       <img src={hackatonDetails.photo} alt="portadaHackaton" width={"60%"} />
@@ -143,9 +146,7 @@ function HackatonDetails() {
         </MapContainer>
       </div>
       <br />
-      <button style={{ marginBottom: "30px" }} onClick={handleUpdateData}>
-        {buttonState}
-      </button>
+      
 
       <Modal
         show={showModal}
