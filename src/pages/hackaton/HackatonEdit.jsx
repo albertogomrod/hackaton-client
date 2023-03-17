@@ -94,7 +94,7 @@ function HackatonEdit() {
         Atrás
       </button>
       <h3 style={{ marginTop: "20px" }}>Editar Hackaton</h3>
-      <Form.Group className="mb-3" onSubmit={handleSubmit}>
+      <form className="mb-3" onSubmit={handleSubmit}>
         <Form.Label htmlFor="title">Título: </Form.Label>
         <Form.Control
           type="text"
@@ -168,7 +168,7 @@ function HackatonEdit() {
         <br />
 
         <button type="submit">Guardar cambios</button>
-      </Form.Group>
+      </form>
     </div>
   );
 }
