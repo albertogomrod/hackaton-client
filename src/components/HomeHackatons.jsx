@@ -63,9 +63,9 @@ function HomeHackatons() {
           ) : null}
         </div>
       </div>
-      <Link className="links" to="/hackaton-list">
+      {allHackatones > 0 ? <Link className="links" to="/hackaton-list">
         Ver todos los hackatones disponibles
-      </Link>
+      </Link> : null}
     </div>
   );
 }

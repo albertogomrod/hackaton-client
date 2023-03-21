@@ -54,7 +54,7 @@ function NavBar() {
               <NavLink className="navlink" to="/profile">
                 Mi perfil
               </NavLink>
-              <NavLink id="logout" onClick={handleLogout}>
+              <NavLink id="logout" onClick={handleLogout}  >
                 Cerrar sesión
               </NavLink>
             </Nav>
