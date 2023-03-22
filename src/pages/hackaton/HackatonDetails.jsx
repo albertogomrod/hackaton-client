@@ -5,6 +5,7 @@ import {
   updateHackatonArrService,
   deleteHackatonArrService,
   getHackatonByAssistService,
+  getUsersAssistService
 } from "../../services/hackaton.services";
 import Modal from "../../components/Modal";
 import Tutoriales from "../../components/Tutoriales";
@@ -20,6 +21,7 @@ function HackatonDetails() {
   const [hackatonDetails, setHackatonDetails] = useState(null);
   const [hackatonsAssist, setHackatonsAssist] = useState(null);
   const [buttonState, setButtonState] = useState("Asistir");
+  const [count, setCount] = useState(0)
 
   const [center, setCenter] = useState([40.463667, -3.74922]);
 
@@ -35,9 +37,11 @@ function HackatonDetails() {
     try {
       const response = await getHackatonDetailsService(hackatonId);
       const response2 = await getHackatonByAssistService();
+      const response3 = await getUsersAssistService(hackatonId)
       setHackatonDetails(response.data);
       setHackatonsAssist(response2.data);
       setIsFetching(false);
+      setCount(response3.data.length)
     } catch (error) {
       navigate("/error");
     }
@@ -124,6 +128,7 @@ function HackatonDetails() {
       </button>
       <h3 style={{ marginTop: "20px" }}>{hackatonDetails.title}</h3>
       <br />
+      <p style={{marginTop: "10px"}}>Número de asistentes: {count} </p>
       <img src={hackatonDetails.photo} alt="portadaHackaton" width={"60%"} />
       <br />
       <h6>{hackatonDetails.date}</h6>

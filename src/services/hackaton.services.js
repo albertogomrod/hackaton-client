@@ -40,6 +40,10 @@ const getHackatonByMap = () => {
   return service.get("hackaton/map");
 };
 
+const getUsersAssistService = (hackatonId) => {
+  return service.get(`/hackaton/usersAssist/${hackatonId}`)
+}
+
 export {
   getAllHackatonsService,
   getHackatonDetailsService,
@@ -51,4 +55,5 @@ export {
   deleteHackatonArrService,
   getHackatonByAssistService,
   getHackatonByMap,
+  getUsersAssistService
 };
