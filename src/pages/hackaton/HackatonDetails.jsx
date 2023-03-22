@@ -87,6 +87,7 @@ function HackatonDetails() {
         const response = await getHackatonByAssistService();
         setHackatonsAssist(response.data);
         setShowModal(false);
+        setCount(count - 1)
       } catch (error) {
         navigate("/error");
       }
@@ -97,6 +98,7 @@ function HackatonDetails() {
         const response = await getHackatonByAssistService();
         setHackatonsAssist(response.data);
         setShowModal(false);
+        setCount(count + 1)
       } catch (error) {
         navigate("/error");
       }
