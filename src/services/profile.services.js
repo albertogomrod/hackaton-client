@@ -12,6 +12,10 @@ const editProfileService = (updatedProfile) => {
   return service.patch(`/profile/edit`, updatedProfile);
 };
 
+const editPasswordService = (updatedPassword) => {
+  return service.patch(`profile/editPassword`, updatedPassword)
+}
+
 const getHackatonByProfile = () => {
   return service.get("/profile/hackaton-list-company");
 };
@@ -23,7 +27,8 @@ const getTutorialByProfile = () => {
 export {
   deleteProfileService,
   editProfileService,
+  editPasswordService,
   getProfileService,
   getHackatonByProfile,
-  getTutorialByProfile,
+  getTutorialByProfile
 };

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   getProfileService,
@@ -15,17 +15,15 @@ function ProfileEdit() {
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [comunidadAutonoma, setComunidadAutonoma] = useState("");
   const [tech, setTech] = useState("");
   const [showChangePassword, setShowChangePassword] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const [showButton, setShowButton] = useState("block")
+  const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
   const handleUsernameChange = (event) => setUsername(event.target.value);
   const handleEmailChange = (event) => setEmail(event.target.value);
-  const handlePasswordChange = (event) => setPassword(event.target.value);
   const handleComunidadAutonomaChange = (event) =>
     setComunidadAutonoma(event.target.value);
   const handleTechChange = (event) => setTech(event.target.value);
@@ -37,10 +35,9 @@ function ProfileEdit() {
   const getData = async () => {
     try {
       const response = await getProfileService();
-      const { username, email, password, comunidadAutonoma, tech } =
+      const { username, email, comunidadAutonoma, tech } =
         response.data;
       setComunidadAutonoma(comunidadAutonoma);
-      setPassword(password);
       setEmail(email);
       setUsername(username);
       setTech(tech);
@@ -59,11 +56,6 @@ function ProfileEdit() {
     setShowButton("none")
   }
 
-  const handleShowModalChangePassword = () => {
-    setShowModal(true);
-    setModalMessage("¿Cambiar contraseña?");
-  };
-
   const handleShowModal = (event) => {
     event.preventDefault();
     setShowModal(true);
@@ -76,9 +68,8 @@ function ProfileEdit() {
       const updatedProfile = {
         username,
         email,
-        password,
         comunidadAutonoma,
-        tech,
+        tech
       };
       await editProfileService(updatedProfile);
       setShowModal(false);
@@ -131,8 +122,8 @@ function ProfileEdit() {
 
         <CambiarPassword
           show={showChangePassword}
-          onConfirm={handleShowModalChangePassword}
-          onCancel={handleCancelChangePassword}   
+          // onConfirm={handleShowModalChangePassword}
+          onCancel={handleCancelChangePassword}
           />
 
         {/* <Form.Label htmlFor="password">Contraseña: </Form.Label>
