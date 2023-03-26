@@ -18,7 +18,7 @@ function ProfileEdit() {
   const [comunidadAutonoma, setComunidadAutonoma] = useState("");
   const [tech, setTech] = useState("");
   const [showChangePassword, setShowChangePassword] = useState(false);
-  const [showButton, setShowButton] = useState("block")
+  const [showButton, setShowButton] = useState("block");
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
@@ -35,8 +35,7 @@ function ProfileEdit() {
   const getData = async () => {
     try {
       const response = await getProfileService();
-      const { username, email, comunidadAutonoma, tech } =
-        response.data;
+      const { username, email, comunidadAutonoma, tech } = response.data;
       setComunidadAutonoma(comunidadAutonoma);
       setEmail(email);
       setUsername(username);
@@ -45,16 +44,16 @@ function ProfileEdit() {
       console.log(error);
     }
   };
-  
+
   const handleCancelChangePassword = () => {
-    setShowChangePassword(false)
-    setShowButton("block")
-  }
+    setShowChangePassword(false);
+    setShowButton("block");
+  };
 
   const handleShowChangePassword = () => {
-    setShowChangePassword(true)
-    setShowButton("none")
-  }
+    setShowChangePassword(true);
+    setShowButton("none");
+  };
 
   const handleShowModal = (event) => {
     event.preventDefault();
@@ -69,7 +68,7 @@ function ProfileEdit() {
         username,
         email,
         comunidadAutonoma,
-        tech
+        tech,
       };
       await editProfileService(updatedProfile);
       setShowModal(false);
@@ -116,24 +115,19 @@ function ProfileEdit() {
 
         <Form.Label htmlFor="password">
           Contraseña:{" "}
-          <button onClick={handleShowChangePassword} style={{ marginBottom: "15px", display: showButton }}>Cambiar contraseña</button>{" "}
+          <button
+            onClick={handleShowChangePassword}
+            style={{ marginBottom: "15px", display: showButton }}
+          >
+            Cambiar contraseña
+          </button>{" "}
         </Form.Label>
         <br />
 
         <CambiarPassword
           show={showChangePassword}
-          // onConfirm={handleShowModalChangePassword}
           onCancel={handleCancelChangePassword}
-          />
-
-        {/* <Form.Label htmlFor="password">Contraseña: </Form.Label>
-        <Form.Control
-          type="password"
-          name="password"
-          onChange={handlePasswordChange}
-          value={password}
         />
-        <br /> */}
 
         <Form.Label htmlFor="comunidadAutonoma">
           Comunidad Autónoma:{" "}

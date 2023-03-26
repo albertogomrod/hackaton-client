@@ -4,7 +4,7 @@ import { editPasswordService } from "../services/profile.services";
 import Modal from "./Modal";
 import Form from "react-bootstrap/Form";
 
-function CambiarPassword({ show, updateErrorMessage, onCancel }) {
+function CambiarPassword({ show, onCancel }) {
   const navigate = useNavigate();
 
   const [password1, setPassword1] = useState("");
@@ -14,8 +14,14 @@ function CambiarPassword({ show, updateErrorMessage, onCancel }) {
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
-  const handlePassword1Change = (event) => setPassword1(event.target.value);
-  const handlePassword2Change = (event) => setPassword2(event.target.value);
+  const handlePassword1Change = (event) => {
+    setPassword1(event.target.value);
+    seterrorMessage("");
+  };
+  const handlePassword2Change = (event) => {
+    setPassword2(event.target.value);
+    seterrorMessage("");
+  };
 
   const handleShowModalChangePassword = () => {
     setShowModal(true);
@@ -28,19 +34,24 @@ function CambiarPassword({ show, updateErrorMessage, onCancel }) {
 
   const handleConfirmModal = async (event) => {
     event.preventDefault();
-    try {
-      const updatedPassword = {
-        password: password1
-      };
-      await editPasswordService(updatedPassword);
+    if (password1 !== password2) {
+      seterrorMessage("Las contraseñas no coinciden");
       setShowModal(false);
-      navigate("/profile");
-    } catch (error) {
-      setShowModal(false);
-      if (error.response.status === 400) {
-        seterrorMessage(error.response.data.errorMessage);
-      } else {
-        navigate("/error");
+    } else {
+      try {
+        const updatedPassword = {
+          password: password1,
+        };
+        await editPasswordService(updatedPassword);
+        setShowModal(false);
+        navigate("/profile");
+      } catch (error) {
+        setShowModal(false);
+        if (error.response.status === 400) {
+          seterrorMessage(error.response.data.errorMessage);
+        } else {
+          navigate("/error");
+        }
       }
     }
   };
